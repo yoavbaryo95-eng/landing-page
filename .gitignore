@@ -1,0 +1,11 @@
+# Working files — not part of the deployed site, kept local only
+PROJECT.md
+CLAUDE.md
+old/
+*.png
+*.jpeg
+*.jpg
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
