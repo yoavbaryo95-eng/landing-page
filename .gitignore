@@ -9,3 +9,7 @@ old/
 # OS/editor junk
 .DS_Store
 Thumbs.db
+
+# Creative/working output — not part of the deployed site
+Claude outputs/
+*.skill
