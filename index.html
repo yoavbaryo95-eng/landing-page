@@ -10,7 +10,14 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   gtag('consent','default',Object.assign({region:OPT_IN,wait_for_update:500},D));
   gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
   var c=null;try{c=localStorage.getItem('ms_consent');}catch(e){}
-  if(c==='denied'){gtag('consent','update',D);}
+  if(c==='denied'){
+    gtag('consent','update',D);
+    /* Block the Meta Pixel outright: its loader skips itself when window.fbq already exists,
+       so fbevents.js is never fetched. Keeps the opt-out honest without GTM consent settings. */
+    if(!window.fbq){var f=function(){};f.queue=[];f.loaded=true;f.version='2.0';f.push=f;f.callMethod=null;window.fbq=window._fbq=f;}
+    /* Clarity accepts a consent call once its tag has loaded. */
+    window.addEventListener('load',function(){try{if(window.clarity)clarity('consent',false);}catch(e){}});
+  }
   else if(c==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}
   else if(navigator.globalPrivacyControl===true){gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});}
 })();
@@ -872,7 +879,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
   <!-- everyone else (US etc.): notice + opt-out -->
   <div class="ckb-notice">
-    <p>We use cookies (Google, Meta, Microsoft Clarity) to measure traffic and improve our ads. <a href="privacy.html">Privacy Policy</a> · <button type="button" class="ckb-link" data-consent="denied">Opt out</button></p>
+    <p>We use cookies (Google, Meta, Microsoft Clarity) to measure traffic and improve our ads. See our <a href="privacy.html">Privacy Policy</a>.</p>
     <div class="ckb-row">
       <button type="button" class="btn btn-primary" data-consent="ack">Got it</button>
     </div>

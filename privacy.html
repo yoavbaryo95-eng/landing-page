@@ -67,8 +67,8 @@ footer a{color:#fff}
     <tr><td>Microsoft Clarity (Microsoft)</td><td>Heatmaps and session replays that show how visitors use the page, so we can improve it. Form inputs are masked.</td><td><a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener">Microsoft Privacy Statement</a></td></tr>
   </table></div>
   <p>Meta, Google and Microsoft may use these cookies to collect or receive information from this and other websites, and use it to provide measurement services and target ads. You can also opt out of interest-based advertising from participating companies at <a href="https://optout.aboutads.info" target="_blank" rel="noopener">optout.aboutads.info</a> and <a href="https://optout.networkadvertising.org" target="_blank" rel="noopener">optout.networkadvertising.org</a>.</p>
-  <p><strong>Your choice on this site.</strong> You can opt out of these cookies using the "Opt out" link in the cookie notice (visitors in Europe see Accept / Decline instead), and change your choice at any time here:</p>
-  <p><button type="button" class="btn" id="resetConsent">Reset my cookie choice</button><span class="status" id="consentStatus"></span></p>
+  <p><strong>Your choice on this site.</strong> You can opt out of these advertising and analytics cookies at any time with the button below (visitors in Europe are asked to accept or decline before any tracking starts):</p>
+  <p><button type="button" class="btn" id="consentToggle"></button><span class="status" id="consentStatus"></span></p>
   <p>If your browser sends a <strong>Global Privacy Control</strong> signal, we treat it as a request to opt out of advertising cookies. Visitors from the EU, EEA, UK and Switzerland are not tracked for analytics or advertising unless they click Accept.</p>
 
   <h2>4. How we share information</h2>
@@ -80,7 +80,7 @@ footer a{color:#fff}
     <li>Our phone and text-messaging provider</li>
     <li>GitHub and Cloudflare (website hosting and domain services)</li>
   </ul>
-  <p>Letting advertising partners like Meta collect data through their pixel may count as "sharing" or "targeted advertising" under some U.S. state privacy laws. You can opt out by clicking "Opt out" in the cookie notice, using the button above, or turning on Global Privacy Control. We may also disclose information if required by law or to protect our rights.</p>
+  <p>Letting advertising partners like Meta collect data through their pixel may count as "sharing" or "targeted advertising" under some U.S. state privacy laws. You can opt out using the button above, or by turning on Global Privacy Control. We may also disclose information if required by law or to protect our rights.</p>
   <p>We do not share your phone number or text-messaging consent with third parties for their own marketing.</p>
 
   <h2>5. How long we keep it</h2>
@@ -111,12 +111,14 @@ footer a{color:#fff}
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
 (function(){
-  var st=document.getElementById('consentStatus'),v=null;
+  var st=document.getElementById('consentStatus'),bt=document.getElementById('consentToggle'),v=null;
   try{v=localStorage.getItem('ms_consent');}catch(e){}
-  st.textContent=v==='granted'?'Current choice: accepted':v==='denied'?'Current choice: opted out':v==='ack'?'Current choice: cookies on (notice dismissed)':'No choice saved yet';
-  document.getElementById('resetConsent').addEventListener('click',function(){
-    try{localStorage.removeItem('ms_consent');}catch(e){}
-    window.location.href='./';
+  var off=v==='denied';
+  bt.textContent=off?'Turn cookies back on':'Opt out of these cookies';
+  st.textContent=off?'You are opted out on this browser.':'Cookies are currently on.';
+  bt.addEventListener('click',function(){
+    try{off?localStorage.removeItem('ms_consent'):localStorage.setItem('ms_consent','denied');}catch(e){}
+    location.reload();
   });
 })();
 </script>
