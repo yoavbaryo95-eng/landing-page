@@ -38,7 +38,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:description" content="See a free concept of your new homepage before you pay. 5 pages, built for phones, online in 14 days.">
 <meta property="og:image" content="https://marketing-scale.com/assets/og-websites.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 36'%3E%3Crect x='2' y='31' width='40' height='3' rx='1.5' fill='%23091529'/%3E%3Crect x='3' y='25' width='6' height='6' rx='1.4' fill='%232f6dff' opacity='.55'/%3E%3Crect x='11' y='18' width='6' height='13' rx='1.4' fill='%23091529'/%3E%3Crect x='19' y='13' width='6' height='18' rx='1.4' fill='%232f6dff'/%3E%3Crect x='27' y='20' width='6' height='11' rx='1.4' fill='%23091529'/%3E%3Crect x='35' y='9' width='6' height='22' rx='1.4' fill='%232f6dff'/%3E%3Cpath d='M4 24.5 L16.5 12 L23 18.5 L37.5 4' stroke='%232f6dff' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M30.5 3.2 L38.6 3.2 L38.6 11.3' stroke='%232f6dff' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="assets/logo-badge.png">
+<link rel="apple-touch-icon" href="assets/logo-badge.png">
 <style>
 /* fonts — the same files the rest of the brand uses */
 @font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url("assets/fonts/plus-jakarta-sans-latin.woff2") format('woff2')}
@@ -51,7 +52,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   --text:#0c1a35;--muted:#5b6d89;--muted-d:#9db2d4;
   --disp:'Space Grotesk',sans-serif;--body:'Plus Jakarta Sans',system-ui,sans-serif;--mono:'Space Mono',ui-monospace,Menlo,monospace;
   --sec:104px;--shadow-cta:0 12px 26px -12px rgba(47,109,255,.62);
-  --lg-1:var(--signal);--lg-2:var(--ink);--lg-arrow:var(--signal);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -64,11 +64,13 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 .on-dark .kicker,.hero .kicker,.band .kicker{color:var(--pulse)}
 
 /* logo lock-up */
-.logo{display:inline-flex;align-items:center;gap:12px}
-.logo svg{display:block;flex:none}
+.logo{display:inline-flex;align-items:center;gap:13px}
+.logo .disc{width:44px;height:44px;border-radius:50%;background:#fff;flex:none;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 3px rgba(63,224,196,.28)}
+.logo .disc img{width:62%;height:auto;display:block}
+.logo.lg .disc{width:60px;height:60px;box-shadow:0 0 0 4px rgba(63,224,196,.3)}
 .logo .wm{font-family:var(--disp);font-weight:700;letter-spacing:-.6px;line-height:1;font-size:19px}
 .logo .tl{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;margin-top:4px;color:var(--muted)}
-.on-dark .logo{--lg-2:#e7eefb;--lg-arrow:var(--pulse)}
 .on-dark .logo .wm{color:#fff}
 .on-dark .logo .tl{color:var(--muted-d)}
 
@@ -292,16 +294,7 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 <nav class="nav on-dark">
   <div class="wrap">
     <a href="./" class="logo">
-      <svg width="38" height="31" viewBox="0 0 44 36" fill="none" aria-hidden="true">
-        <rect x="2" y="31" width="40" height="3" rx="1.5" fill="var(--lg-2)"/>
-        <rect x="3" y="25" width="6" height="6" rx="1.4" fill="var(--lg-1)" opacity=".55"/>
-        <rect x="11" y="18" width="6" height="13" rx="1.4" fill="var(--lg-2)"/>
-        <rect x="19" y="13" width="6" height="18" rx="1.4" fill="var(--lg-1)"/>
-        <rect x="27" y="20" width="6" height="11" rx="1.4" fill="var(--lg-2)"/>
-        <rect x="35" y="9" width="6" height="22" rx="1.4" fill="var(--lg-1)"/>
-        <path d="M4 24.5 L16.5 12 L23 18.5 L37.5 4" stroke="var(--lg-arrow)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M30.5 3.2 L38.6 3.2 L38.6 11.3" stroke="var(--lg-arrow)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+      <span class="disc"><img src="assets/logo-mark.png" alt="Marketing Scale" width="120" height="80"></span>
       <span><span class="wm">Marketing Scale</span><span class="tl" style="display:block">Websites</span></span>
     </a>
     <a href="#start" class="btn btn-primary">See my homepage</a>
@@ -514,17 +507,8 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 <!-- CLOSING BAND — same lock-up as the ads -->
 <section class="band on-dark">
   <div class="wrap">
-    <div class="logo">
-      <svg width="52" height="43" viewBox="0 0 44 36" fill="none" aria-hidden="true">
-        <rect x="2" y="31" width="40" height="3" rx="1.5" fill="var(--lg-2)"/>
-        <rect x="3" y="25" width="6" height="6" rx="1.4" fill="var(--lg-1)" opacity=".55"/>
-        <rect x="11" y="18" width="6" height="13" rx="1.4" fill="var(--lg-2)"/>
-        <rect x="19" y="13" width="6" height="18" rx="1.4" fill="var(--lg-1)"/>
-        <rect x="27" y="20" width="6" height="11" rx="1.4" fill="var(--lg-2)"/>
-        <rect x="35" y="9" width="6" height="22" rx="1.4" fill="var(--lg-1)"/>
-        <path d="M4 24.5 L16.5 12 L23 18.5 L37.5 4" stroke="var(--lg-arrow)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M30.5 3.2 L38.6 3.2 L38.6 11.3" stroke="var(--lg-arrow)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    <div class="logo lg">
+      <span class="disc"><img src="assets/logo-mark.png" alt="Marketing Scale" width="120" height="80"></span>
       <span><span class="wm" style="font-size:25px">Marketing Scale</span><span class="tl" style="display:block;font-size:11px">One partner. All your marketing.</span></span>
     </div>
     <div class="div"></div>
