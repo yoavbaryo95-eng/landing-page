@@ -6,6 +6,9 @@ old/
 *.jpeg
 *.jpg
 
+# ...but images that are part of the deployed site are tracked
+!assets/*.png
+
 # OS/editor junk
 .DS_Store
 Thumbs.db
