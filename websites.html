@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<!-- Consent defaults — must run BEFORE GTM. Opt-in (denied) in EEA/UK/CH, opt-out (granted) elsewhere. -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+(function(){
+  var OPT_IN=['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'];
+  var D={ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'};
+  gtag('consent','default',Object.assign({region:OPT_IN,wait_for_update:500},D));
+  gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+  var c=null;try{c=localStorage.getItem('ms_consent');}catch(e){}
+  if(c==='denied'){
+    gtag('consent','update',D);
+    if(!window.fbq){var f=function(){};f.queue=[];f.loaded=true;f.version='2.0';f.push=f;f.callMethod=null;window.fbq=window._fbq=f;}
+    window.addEventListener('load',function(){try{if(window.clarity)clarity('consent',false);}catch(e){}});
+  }
+  else if(c==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}
+  else if(navigator.globalPrivacyControl===true){gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});}
+})();
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-547ZFG6D');</script>
+<!-- End Google Tag Manager -->
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Websites for small business — live in 14 days | Marketing Scale</title>
+<meta name="description" content="A 5-page website for your business, live in 14 days. See a free concept of your new homepage before you pay. Built for small businesses in the Philadelphia area.">
+<link rel="canonical" href="https://marketing-scale.com/websites.html">
+<style>
+/* fonts — same files the main site uses */
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url("assets/fonts/plus-jakarta-sans-latin.woff2") format('woff2')}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url("assets/fonts/space-grotesk-latin.woff2") format('woff2')}
+
+:root{
+  --ink:#091529;--ink-2:#0d1f3d;--signal:#2f6dff;--signal-d:#1f55da;--pulse:#3fe0c4;
+  --paper:#f5f8fc;--card:#fff;--line:#dde6f2;--line-d:rgba(140,170,220,.16);
+  --text:#0c1a35;--muted:#5b6d89;--muted-d:#9db2d4;
+  --disp:'Space Grotesk',sans-serif;--body:'Plus Jakarta Sans',system-ui,sans-serif;
+  --sec:96px;--shadow-cta:0 12px 26px -12px rgba(47,109,255,.62);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--text);background:var(--paper);line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--pulse);outline-offset:3px;border-radius:5px}
+.wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--disp);font-size:12px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--pulse)}
+h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--disp);font-weight:600;font-size:15.5px;
+  padding:14px 26px;border-radius:12px;border:1.5px solid transparent;cursor:pointer;transition:all .18s;min-height:50px}
+.btn svg{width:17px;height:17px}
+.btn-primary{background:var(--signal);color:#fff}
+.btn-primary:hover{background:var(--signal-d);transform:translateY(-2px);box-shadow:var(--shadow-cta)}
+.btn-line{background:transparent;color:var(--text);border-color:var(--line)}
+.btn-line:hover{border-color:var(--signal);color:var(--signal);transform:translateY(-2px)}
+.on-dark .btn-line,.hero .btn-line{color:#fff;border-color:var(--line-d)}
+.on-dark .btn-line:hover,.hero .btn-line:hover{border-color:var(--pulse);color:var(--pulse)}
+
+/* nav — no menu, one way out */
+.nav{position:sticky;top:0;z-index:50;background:rgba(9,21,41,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-d)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav .mark{font-family:var(--disp);font-weight:700;color:#fff;font-size:17px}
+.nav .mark span{color:var(--pulse);font-weight:500;font-size:13px;letter-spacing:.06em;margin-left:9px}
+.nav .btn{padding:10px 20px;min-height:42px;font-size:14.5px}
+
+/* hero */
+.hero{background:linear-gradient(170deg,var(--ink) 0%,var(--ink-2) 100%);color:#fff;padding:72px 0 var(--sec)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(38px,5vw,60px);margin:14px 0 18px}
+.hero h1 em{font-style:normal;color:var(--pulse)}
+.hero p.lead{font-size:18px;color:var(--muted-d);max-width:30em}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.hero .under{margin-top:16px;font-size:13.5px;color:var(--muted-d)}
+.trust{display:flex;gap:20px;flex-wrap:wrap;margin-top:34px;padding-top:26px;border-top:1px solid var(--line-d);font-size:13.5px;color:var(--muted-d)}
+.trust b{color:#fff;font-family:var(--disp);font-weight:600}
+
+/* browser mock in hero */
+.mock{position:relative}
+.mock .win{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -28px rgba(0,0,0,.6)}
+.mock .bar{height:34px;background:#eef3fa;display:flex;align-items:center;gap:6px;padding:0 13px;border-bottom:1px solid var(--line)}
+.mock .dot{width:9px;height:9px;border-radius:50%;background:#cfdaea}
+.mock .url{margin-left:10px;height:16px;flex:1;border-radius:8px;background:#fff;border:1px solid var(--line)}
+.mock .body{padding:22px}
+.mock .h{height:15px;border-radius:5px;background:var(--ink);width:72%}
+.mock .h2{height:9px;border-radius:5px;background:#c9d6e8;width:52%;margin-top:11px}
+.mock .pill{height:28px;width:112px;border-radius:9px;background:var(--signal);margin-top:17px}
+.mock .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
+.mock .cell{height:52px;border-radius:9px;background:#eef3fa;border:1px solid var(--line)}
+.mock .phone{position:absolute;right:-14px;bottom:-30px;width:122px;background:#fff;border:6px solid var(--ink);border-radius:20px;padding:11px 9px;
+  box-shadow:0 22px 40px -20px rgba(0,0,0,.65)}
+.mock .phone .h{width:80%;height:10px}
+.mock .phone .h2{width:60%;height:7px;margin-top:8px}
+.mock .phone .pill{height:20px;width:66px;margin-top:12px}
+.mock .phone .cell{height:34px;margin-top:10px}
+
+/* sections */
+.sec{padding:var(--sec) 0}
+.sec.white{background:#fff}
+.shead{max-width:660px;margin-bottom:44px}
+.shead h2{font-size:clamp(28px,3.6vw,40px);margin-top:12px}
+.shead p{color:var(--muted);margin-top:14px;font-size:16.5px}
+.shead .eyebrow{color:var(--signal)}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:28px}
+.step .n{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.2em;color:var(--signal)}
+.step h3{font-size:21px;margin:12px 0 9px}
+.step p{color:var(--muted);font-size:15px}
+
+/* package + price */
+.pkg{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px}
+.card h3{font-size:23px;margin-bottom:18px}
+.inc{display:grid;gap:13px}
+.inc li{list-style:none;display:flex;gap:12px;align-items:flex-start;font-size:15.5px}
+.inc svg{width:21px;height:21px;flex:none;color:var(--signal);margin-top:2px}
+.price{background:var(--ink);color:#fff;border:0}
+.price .tag{font-family:var(--disp);font-weight:700;font-size:54px;letter-spacing:-2px;line-height:1}
+.price .cur{font-size:26px;vertical-align:super;margin-right:2px}
+.price .note{color:var(--muted-d);font-size:14.5px;margin-top:12px}
+.price .after{margin-top:20px;padding-top:20px;border-top:1px solid var(--line-d);font-size:14.5px;color:var(--muted-d)}
+.price .after b{color:#fff}
+.price .btn{width:100%;margin-top:24px}
+.price .care{margin-top:14px;font-size:13.5px;color:var(--muted-d);text-align:center}
+
+/* two markets */
+.split{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.split .c{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px}
+.split .c h3{font-size:19px;margin-bottom:8px}
+.split .c p{color:var(--muted);font-size:15px}
+
+/* form */
+.book{background:linear-gradient(170deg,var(--ink) 0%,var(--ink-2) 100%);color:#fff}
+.book .wrap{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start}
+.book h2{font-size:clamp(28px,3.6vw,40px)}
+.book p.sub{color:var(--muted-d);margin-top:16px;font-size:16.5px}
+.book .what{margin-top:26px;display:grid;gap:12px}
+.book .what li{list-style:none;display:flex;gap:11px;font-size:15px;color:var(--muted-d)}
+.book .what svg{width:19px;height:19px;color:var(--pulse);flex:none;margin-top:3px}
+.book .alt{margin-top:28px;padding-top:24px;border-top:1px solid var(--line-d)}
+.book .alt .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.formcard{background:#fff;color:var(--text);border-radius:18px;padding:30px}
+.field{margin-bottom:15px}
+.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
+.field input,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;font-family:var(--body);font-size:15px;background:var(--paper)}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--signal);background:#fff}
+.field textarea{min-height:88px;resize:vertical}
+.formcard .btn{width:100%}
+.fnote{font-size:12px;color:var(--muted);text-align:center;margin-top:13px}
+.fnote a{text-decoration:underline;text-underline-offset:2px}
+.fok{display:none;text-align:center;padding:30px 10px}
+.fok .ic{width:54px;height:54px;border-radius:50%;background:rgba(63,224,196,.16);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.fok .ic svg{width:27px;height:27px;color:#0e9c81}
+.fok h3{font-size:22px;margin-bottom:8px}
+.fok p{color:var(--muted);font-size:15px}
+
+/* faq */
+.faq{max-width:780px}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;background:none;border:0;cursor:pointer;
+  font-family:var(--disp);font-weight:600;font-size:17.5px;color:var(--text);text-align:left;padding:20px 0}
+.qa .pm{color:var(--signal);font-size:22px;flex:none}
+.qa .ans{max-height:0;overflow:hidden;transition:max-height .28s ease}
+.qa .ans p{color:var(--muted);font-size:15.5px;padding-bottom:20px;max-width:64em}
+
+/* footer */
+.foot{background:var(--ink);color:var(--muted-d);padding:34px 0;border-top:1px solid var(--line-d)}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;font-size:13.5px}
+.foot a:hover{color:#fff}
+.foot .legal{display:flex;gap:16px;font-size:12.5px;color:#62789c}
+.foot .legal button{background:none;border:0;font:inherit;color:inherit;cursor:pointer;padding:0}
+
+/* cookie banner */
+.ckb{position:fixed;left:16px;right:16px;bottom:16px;z-index:70;display:none;max-width:560px;margin-left:auto;
+  background:var(--ink);color:var(--muted-d);border:1px solid var(--line-d);border-radius:14px;padding:16px 18px;
+  box-shadow:0 18px 40px -16px rgba(9,21,41,.55);font-size:13.5px;line-height:1.5}
+.ckb.show{display:block}
+.ckb p{margin-bottom:12px}
+.ckb a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+.ckb .ckb-row{display:flex;gap:10px;justify-content:flex-end}
+.ckb .btn{font-size:14px;min-height:40px;padding:8px 18px}
+.ckb .btn-line{color:#fff;border-color:var(--line-d)}
+.ckb .ckb-optin{display:none}
+.ckb.optin .ckb-optin{display:block}
+.ckb.optin .ckb-notice{display:none}
+
+/* sticky mobile CTA */
+.mcta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;padding:11px 14px;
+  background:rgba(9,21,41,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line-d)}
+.mcta .btn{flex:1;font-size:14.5px;min-height:48px}
+.mcta .btn-sms{background:transparent;color:#fff;border-color:rgba(63,224,196,.5)}
+
+@media (max-width:900px){
+  :root{--sec:66px}
+  .hero .wrap,.pkg,.book .wrap{grid-template-columns:1fr;gap:38px}
+  .steps,.split{grid-template-columns:1fr}
+  .mock .phone{display:none}
+  .nav .btn{display:none}
+}
+@media (max-width:560px){
+  .hero{padding-top:46px}
+  .ckb{left:12px;right:12px;bottom:12px}
+  body.show-mcta .mcta{display:flex}
+  body.show-mcta{padding-bottom:72px}
+  body.show-mcta .ckb{bottom:82px}
+  .hero .cta .btn,.book .alt .row .btn{width:100%}
+}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-547ZFG6D" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="mark">Marketing Scale<span>WEBSITES</span></div>
+    <a href="#start" class="btn btn-primary">See my homepage</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Philadelphia · Bucks · Montgomery</div>
+      <h1>A website for your business, <em>live in 14 days</em>.</h1>
+      <p class="lead">See a free concept of your new homepage first. If you like it, we build the rest. If you don't, you've lost nothing.</p>
+      <div class="cta">
+        <a href="#start" class="btn btn-primary">See my homepage — free</a>
+        <a href="sms:+12674123407" class="btn btn-line">Text me</a>
+      </div>
+      <p class="under">No payment, no commitment, no sales call to get the concept.</p>
+      <div class="trust">
+        <div><b>5 pages</b> · built for you</div>
+        <div><b>14 days</b> · from approval to live</div>
+        <div><b>Both markets</b> · U.S. and Israel</div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="win">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url"></span></div>
+        <div class="body">
+          <div class="h"></div><div class="h2"></div><div class="pill"></div>
+          <div class="grid"><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
+        </div>
+      </div>
+      <div class="phone"><div class="h"></div><div class="h2"></div><div class="pill"></div><div class="cell"></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- HOW IT WORKS -->
+<section class="sec white">
+  <div class="wrap">
+    <div class="shead">
+      <div class="eyebrow">How it works</div>
+      <h2>Three steps. You see the work before you pay.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">STEP 1</div>
+        <h3>Tell me about your business</h3>
+        <p>A short form — your business, what you do and where. Two minutes, no call needed.</p>
+      </div>
+      <div class="step">
+        <div class="n">STEP 2</div>
+        <h3>You get your homepage concept</h3>
+        <p>A designed homepage for your business — your name, your services, desktop and mobile. Free, and yours to judge.</p>
+      </div>
+      <div class="step">
+        <div class="n">STEP 3</div>
+        <h3>Approve it and go live</h3>
+        <p>Like it? The full site is built and online within 14 days. Don't like it? We stop there, no cost.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGE + PRICE -->
+<section class="sec">
+  <div class="wrap">
+    <div class="shead">
+      <div class="eyebrow">The package</div>
+      <h2>Everything a small business actually needs. Nothing it doesn't.</h2>
+      <p>One price, one timeline, no hourly surprises.</p>
+    </div>
+    <div class="pkg">
+      <div class="card">
+        <h3>What you get</h3>
+        <ul class="inc">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Up to 5 pages</b> — home, services, about, contact and one more you choose</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Built for phones first</b> — where most of your customers will see it</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Contact form</b> that sends every enquiry straight to your inbox</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Basic SEO</b> — titles, descriptions and structure so Google can read the site</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Google Business Profile</b> set up or cleaned up, so you show up on Maps</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Google Analytics</b> connected, so you can see what visitors do</div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Domain and hosting included for the first year</b></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Online within 14 days</b> of approving the concept</div></li>
+        </ul>
+      </div>
+      <div class="card price">
+        <div class="eyebrow">Founding client price</div>
+        <div style="margin-top:14px"><span class="tag"><span class="cur">$</span>1,500</span></div>
+        <p class="note">One-time, for the first 5 businesses. In exchange, you give a short review and let your site be shown as an example.</p>
+        <div class="after">After the first 5 clients the price is <b>$2,500</b>.</div>
+        <a href="#start" class="btn btn-primary">See my homepage — free</a>
+        <div class="care">Optional care plan afterwards: $89/month for hosting, updates and support.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="sec white">
+  <div class="wrap">
+    <div class="shead">
+      <div class="eyebrow">Why this works</div>
+      <h2>A marketer builds it, not just a designer.</h2>
+    </div>
+    <div class="split">
+      <div class="c"><h3>Built to bring calls</h3><p>The site is laid out around one thing: turning a visitor into a phone call or a form. Pretty is not the goal, booked work is.</p></div>
+      <div class="c"><h3>Two markets, one partner</h3><p>If your business sits between Israel and the U.S., you don't have to explain the context twice. I work in both markets, in both languages.</p></div>
+      <div class="c"><h3>Marketing after launch</h3><p>When the site is live, the same person can run your ads, SEO and automation. No handover, no second agency.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="sec book" id="start">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Start here</div>
+      <h2>See your new homepage before you pay.</h2>
+      <p class="sub">Fill this in and you'll get a designed concept of your homepage — built for your business, not a template.</p>
+      <ul class="what">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div>Your business name, your services, your kind of customer</div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div>Shown on desktop and on mobile</div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div>Free, with no obligation to continue</div></li>
+      </ul>
+      <div class="alt on-dark">
+        <div style="font-size:14.5px;color:var(--muted-d)">Prefer to just message?</div>
+        <div class="row">
+          <a href="sms:+12674123407" class="btn btn-line">Text me</a>
+          <a href="#" data-wa class="btn btn-line">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="formcard">
+      <form id="leadForm">
+        <div class="field"><label>Your name</label><input name="name" type="text" required placeholder="Your name"></div>
+        <div class="field"><label>Business name</label><input name="business" type="text" required placeholder="e.g. Kaplan Dental, Bucks County"></div>
+        <div class="field"><label>What does your business do?</label><textarea name="message" placeholder="A line about your services and who you serve..."></textarea></div>
+        <div class="field"><label>Current website <span style="font-weight:400;color:var(--muted)">(if you have one)</span></label><input name="current_site" type="text" placeholder="yourbusiness.com — or leave empty"></div>
+        <div class="field"><label>Email</label><input name="email" type="email" required placeholder="you@email.com"></div>
+        <div class="field"><label>Phone / WhatsApp</label><input name="phone" type="tel" placeholder="+1 ..."></div>
+        <input type="hidden" name="source" value="websites">
+        <button type="submit" class="btn btn-primary">Send — see my homepage</button>
+        <p class="fnote">No spam. By sending, you agree we may contact you by email, phone, text or WhatsApp about your website (msg &amp; data rates may apply; reply STOP to opt out). See our <a href="privacy.html">Privacy Policy</a>.</p>
+      </form>
+      <div class="fok" id="formOk">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"></path></svg></div>
+        <h3>Got it — your concept is on the way.</h3>
+        <p>I'll be in touch shortly with a first look at your new homepage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec white">
+  <div class="wrap">
+    <div class="shead"><div class="eyebrow">Questions</div><h2>Good to know</h2></div>
+    <div class="faq">
+      <div class="qa"><button type="button">Is the homepage concept really free?<span class="pm">+</span></button><div class="ans"><p>Yes. You get a designed concept of your homepage at no cost and with no obligation. It's a design, not a working website — if you want the site built, that's the $1,500 package.</p></div></div>
+      <div class="qa"><button type="button">I already have a website. Is it worth replacing?<span class="pm">+</span></button><div class="ans"><p>Often, yes — most older sites are slow on phones and give visitors no clear next step. Send me the link with your details and the concept will show you the difference side by side.</p></div></div>
+      <div class="qa"><button type="button">Who writes the text and supplies the photos?<span class="pm">+</span></button><div class="ans"><p>I write the text for you, based on what you tell me about the business. Photos of your work, team or place are welcome; where you don't have any, we use quality stock images.</p></div></div>
+      <div class="qa"><button type="button">What do I need to provide?<span class="pm">+</span></button><div class="ans"><p>Your logo if you have one, any photos you want used, and about 30 minutes of your time to answer questions and approve the pages. That's it.</p></div></div>
+      <div class="qa"><button type="button">What happens after the site is live?<span class="pm">+</span></button><div class="ans"><p>It's your site and your domain. You can leave it as is, or take the $89/month care plan for hosting, updates and support. Ads, SEO and automation are available separately when you're ready.</p></div></div>
+      <div class="qa"><button type="button">Why is the price so low?<span class="pm">+</span></button><div class="ans"><p>Because Marketing Scale is new in the Philadelphia area and I want the first five clients to be a strong reference. In exchange for the price you give a short review and let your site be shown as an example. After five clients the price is $2,500.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><a href="mailto:info@marketing-scale.com">info@marketing-scale.com</a> · <a href="tel:+12674123407">+1 (267) 412-3407</a></div>
+    <div class="legal"><a href="./">Marketing Scale home</a><a href="privacy.html">Privacy Policy</a><button type="button" data-cookie-settings>Cookie settings</button></div>
+  </div>
+</footer>
+
+<div class="mcta on-dark">
+  <a href="#start" class="btn btn-primary">See my homepage</a>
+  <a href="sms:+12674123407" class="btn btn-sms">Text me</a>
+</div>
+
+<div class="ckb" id="cookieBanner" role="region" aria-label="Cookie notice">
+  <div class="ckb-optin">
+    <p>We use cookies and similar tools (Google, Meta, Microsoft Clarity) to measure site traffic and improve our ads. You can accept or decline — see our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div class="ckb-row">
+      <button type="button" class="btn btn-line" data-consent="denied">Decline</button>
+      <button type="button" class="btn btn-primary" data-consent="granted">Accept</button>
+    </div>
+  </div>
+  <div class="ckb-notice">
+    <p>We use cookies (Google, Meta, Microsoft Clarity) to measure traffic and improve our ads. See our <a href="privacy.html">Privacy Policy</a>.</p>
+    <div class="ckb-row">
+      <button type="button" class="btn btn-primary" data-consent="ack">Got it</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== CONFIG — shared with the main site ===== */
+var CONFIG = {
+  WHATSAPP: "12674123407",
+  WHATSAPP_MSG: "Hi Marketing Scale, I'd like to see a concept of my new homepage.",
+  FORM_ENDPOINT: "https://script.google.com/macros/s/AKfycbzHKAtcB7_EwUXuSUyxvaySb2NmvsLCv6EV_bjpIpTsQb0FdoO7sTk3JOQ7_JwKnrWy/exec"
+};
+document.querySelectorAll('[data-wa]').forEach(function(a){
+  a.href="https://wa.me/"+CONFIG.WHATSAPP+"?text="+encodeURIComponent(CONFIG.WHATSAPP_MSG);
+  a.target="_blank";a.rel="noopener";
+});
+document.querySelectorAll('.qa button').forEach(function(b){
+  b.addEventListener('click',function(){
+    var qa=b.parentElement,ans=qa.querySelector('.ans');
+    var open=qa.classList.toggle('open');
+    ans.style.maxHeight=open?ans.scrollHeight+'px':0;
+  });
+});
+document.getElementById('leadForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var form=e.target,data=Object.fromEntries(new FormData(form).entries());
+  /* lets GTM/Meta tell website leads apart from the ones on the main site */
+  dataLayer.push({event:'lead_submit',lead_source:'websites'});
+  function done(){form.style.display='none';document.getElementById('formOk').style.display='block';}
+  if(CONFIG.FORM_ENDPOINT){
+    fetch(CONFIG.FORM_ENDPOINT,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'text/plain;charset=utf-8'}}).then(done).catch(done);
+  }else{done();}
+});
+
+/* ===== sticky mobile CTA once the hero is scrolled past ===== */
+(function(){
+  var hero=document.querySelector('.hero');
+  if(!hero||!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){document.body.classList.toggle('show-mcta',!e.isIntersecting);});
+  },{rootMargin:'-40px 0px 0px 0px',threshold:0});
+  io.observe(hero);
+})();
+
+/* ===== cookie banner — pairs with the consent defaults in <head> ===== */
+(function(){
+  var bn=document.getElementById('cookieBanner');
+  var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
+  if(/^Europe\/|^Atlantic\/(Reykjavik|Canary|Madeira|Azores|Faroe)/.test(tz))bn.classList.add('optin');
+  var saved=null;try{saved=localStorage.getItem('ms_consent');}catch(e){}
+  if(!saved)bn.classList.add('show');
+  function set(v){
+    try{localStorage.setItem('ms_consent',v);}catch(e){}
+    bn.classList.remove('show');
+    if(v==='ack')return;
+    gtag('consent','update',{ad_storage:v,ad_user_data:v,ad_personalization:v,analytics_storage:v});
+    if(typeof window.fbq==='function')fbq('consent',v==='granted'?'grant':'revoke');
+    dataLayer.push({event:'cookie_consent_update',cookie_consent:v});
+  }
+  bn.querySelectorAll('[data-consent]').forEach(function(b){
+    b.addEventListener('click',function(){set(b.getAttribute('data-consent'));});
+  });
+  document.querySelectorAll('[data-cookie-settings]').forEach(function(b){
+    b.addEventListener('click',function(){bn.classList.add('show');});
+  });
+})();
+</script>
+</body></html>
