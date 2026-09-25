@@ -55,6 +55,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+#start{scroll-margin-top:74px}
 body{font-family:var(--body);color:var(--text);background:var(--paper);line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--pulse);outline-offset:3px;border-radius:5px}
@@ -261,7 +262,7 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 /* sticky mobile CTA */
 .mcta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;padding:11px 14px;
   background:rgba(9,21,41,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line-d)}
-.mcta .btn{flex:1;font-size:14.5px;min-height:48px}
+.mcta .btn{flex:1;font-size:14.5px;min-height:48px;padding:10px 12px;white-space:nowrap}
 .mcta .btn-sms{background:transparent;color:#fff;border-color:rgba(63,224,196,.5)}
 
 /* motion — only once the head script confirms no reduced-motion preference */
@@ -277,6 +278,11 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
   .nav .btn{display:none}
   .band .cta{margin-left:0;text-align:left;width:100%}
   .band .div{display:none}
+  .book .wrap{display:flex;flex-direction:column;gap:0}
+  .book .intro{display:contents}
+  .book .intro>*{order:1;width:100%}
+  .book .formcard{order:2;margin-top:28px}
+  .book .intro>.what,.book .intro>.alt{order:3}
 }
 @media (max-width:560px){
   .hero{padding-top:48px}
@@ -459,7 +465,7 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 <!-- FORM -->
 <section class="sec book on-dark" id="start">
   <div class="wrap">
-    <div class="reveal">
+    <div class="intro reveal">
       <div class="kicker">Start here</div>
       <h2>See your new homepage before you pay.</h2>
       <p class="sub">Fill this in and you'll get a designed concept of your homepage — built for your business, not a template.</p>
@@ -580,7 +586,8 @@ document.getElementById('leadForm').addEventListener('submit',function(e){
   if(ct.indexOf('@')>-1){data.email=ct;data.phone='';}else{data.email='';data.phone=ct;}
   /* lets GTM/Meta tell website leads apart from the ones on the main site */
   dataLayer.push({event:'lead_submit',lead_source:'websites',content_name:'websites_lp'});
-  function done(){form.style.display='none';document.getElementById('formOk').style.display='block';}
+  function done(){form.style.display='none';var ok=document.getElementById('formOk');ok.style.display='block';
+    document.querySelector('.mcta').remove();ok.scrollIntoView({block:'center'});}
   if(CONFIG.FORM_ENDPOINT){
     fetch(CONFIG.FORM_ENDPOINT,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'text/plain;charset=utf-8'}}).then(done).catch(done);
   }else{done();}
