@@ -210,6 +210,7 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--signal);background:#fff}
 .field textarea{min-height:84px;resize:vertical}
 .formcard .btn{width:100%}
+.formcard .btn[disabled]{opacity:.75;cursor:progress;transform:none;box-shadow:none}
 .fnote{font-size:12px;color:var(--muted);text-align:center;margin-top:13px}
 .fnote a{text-decoration:underline;text-underline-offset:2px}
 .fok{display:none;text-align:center;padding:30px 10px}
@@ -580,16 +581,24 @@ document.querySelectorAll('.qa button').forEach(function(b){
 });
 document.getElementById('leadForm').addEventListener('submit',function(e){
   e.preventDefault();
-  var form=e.target,data=Object.fromEntries(new FormData(form).entries());
+  var form=e.target;
+  /* the Sheet script takes ~3s to answer — block a second tap and show that it's working */
+  if(form.dataset.sending)return;form.dataset.sending='1';
+  var btn=form.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Sending…';
+  var data=Object.fromEntries(new FormData(form).entries());
   /* one contact field on the page, but the Sheet still gets separate email / phone columns */
   var ct=(data.contact||'').trim();delete data.contact;
   if(ct.indexOf('@')>-1){data.email=ct;data.phone='';}else{data.email='';data.phone=ct;}
   /* lets GTM/Meta tell website leads apart from the ones on the main site */
   dataLayer.push({event:'lead_submit',lead_source:'websites',content_name:'websites_lp'});
-  function done(){form.style.display='none';var ok=document.getElementById('formOk');ok.style.display='block';
-    document.querySelector('.mcta').remove();ok.scrollIntoView({block:'center'});}
+  var shown=false;
+  function done(){if(shown)return;shown=true;
+    form.style.display='none';var ok=document.getElementById('formOk');ok.style.display='block';
+    var m=document.querySelector('.mcta');if(m)m.remove();ok.scrollIntoView({block:'center'});}
   if(CONFIG.FORM_ENDPOINT){
-    fetch(CONFIG.FORM_ENDPOINT,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'text/plain;charset=utf-8'}}).then(done).catch(done);
+    /* keepalive lets the request finish even if the visitor leaves right after the confirmation */
+    fetch(CONFIG.FORM_ENDPOINT,{method:'POST',keepalive:true,body:JSON.stringify(data),headers:{'Content-Type':'text/plain;charset=utf-8'}}).then(done,done);
+    setTimeout(done,1200);
   }else{done();}
 });
 

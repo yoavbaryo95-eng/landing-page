@@ -480,6 +480,7 @@ a{color:inherit;text-decoration:none}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--signal);background:#fff;box-shadow:0 0 0 4px rgba(47,109,255,.1)}
 .field textarea{resize:vertical;min-height:88px}
 .formcard .btn-primary{width:100%;margin-top:6px}
+.formcard .btn[disabled]{opacity:.75;cursor:progress;transform:none;box-shadow:none}
 .fnote{font-size:12px;color:var(--muted);text-align:center;margin-top:13px}
 .fok{display:none;text-align:center;padding:24px 8px}
 .fok .ic{width:56px;height:56px;border-radius:50%;background:rgba(63,224,196,.16);display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
@@ -914,10 +915,17 @@ document.querySelectorAll('.qa button').forEach(function(b){
 });
 document.getElementById('leadForm').addEventListener('submit',function(e){
   e.preventDefault();
-  var form=e.target,data=Object.fromEntries(new FormData(form).entries());
-  function done(){form.style.display='none';document.getElementById('formOk').style.display='block';}
+  var form=e.target;
+  /* the Sheet script takes ~3s to answer — block a second tap and show that it's working */
+  if(form.dataset.sending)return;form.dataset.sending='1';
+  var btn=form.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Sending…';
+  var data=Object.fromEntries(new FormData(form).entries());
+  var shown=false;
+  function done(){if(shown)return;shown=true;form.style.display='none';document.getElementById('formOk').style.display='block';}
   if(CONFIG.FORM_ENDPOINT){
-    fetch(CONFIG.FORM_ENDPOINT,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'text/plain;charset=utf-8'}}).then(done).catch(done);
+    /* keepalive lets the request finish even if the visitor leaves right after the confirmation */
+    fetch(CONFIG.FORM_ENDPOINT,{method:'POST',keepalive:true,body:JSON.stringify(data),headers:{'Content-Type':'text/plain;charset=utf-8'}}).then(done,done);
+    setTimeout(done,1200);
   }else{done();}
 });
 (function(){
