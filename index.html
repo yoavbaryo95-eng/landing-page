@@ -529,6 +529,12 @@ a{color:inherit;text-decoration:none}
 .ckb .ckb-row{display:flex;gap:10px;justify-content:flex-end}
 .ckb .btn{font-size:14px;min-height:40px;padding:8px 18px}
 .ckb .btn-line{color:#fff;border-color:var(--line-d)}
+.ckb .ckb-x{position:absolute;top:-11px;right:-7px;width:28px;height:28px;border-radius:50%;padding:0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;background:var(--ink);border:1px solid var(--line-d);color:var(--muted-d)}
+.ckb .ckb-x::after{content:"";position:absolute;inset:-8px} /* finger-sized tap area */
+.ckb .ckb-x:hover{color:#fff;border-color:var(--muted-d)}
+.ckb .ckb-x svg{width:12px;height:12px}
+.ckb.optin .ckb-x{display:none}
 .ckb .ckb-optin{display:none}
 .ckb.optin .ckb-optin{display:block}
 .ckb.optin .ckb-notice{display:none}
@@ -873,6 +879,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <div class="ckb" id="cookieBanner" role="region" aria-label="Cookie notice">
+  <!-- closes the plain notice (same as "Got it"); not shown where a real choice is required -->
+  <button type="button" class="ckb-x" data-consent="ack" aria-label="Close cookie notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <!-- EU/UK/CH visitors: opt-in choice — nothing loads before Accept -->
   <div class="ckb-optin">
     <p>We use cookies and similar tools (Google, Meta, Microsoft Clarity) to measure site traffic and improve our ads. You can accept or decline — see our <a href="privacy.html">Privacy Policy</a>.</p>
