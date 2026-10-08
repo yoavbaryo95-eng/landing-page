@@ -29,8 +29,6 @@ th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vert
 th{font-family:var(--disp);font-weight:600;background:#eef3fa}
 tr:last-child td{border-bottom:0}
 .tbl{overflow-x:auto}
-.btn{display:inline-block;font-family:var(--disp);font-weight:600;font-size:15px;background:var(--signal);color:#fff;border:0;border-radius:10px;padding:10px 20px;cursor:pointer}
-.status{font-size:14px;color:var(--muted);margin-left:10px}
 footer{background:var(--ink);color:var(--muted-d);padding:28px 0;font-size:13px}
 footer a{color:#fff}
 </style>
@@ -41,7 +39,7 @@ footer a{color:#fff}
 <main class="wrap">
   <div class="eyebrow">Legal</div>
   <h1>Privacy Policy</h1>
-  <p class="upd">Last updated: September 19, 2026</p>
+  <p class="upd">Last updated: October 8, 2026</p>
 
   <p>This policy explains how Marketing Scale ("we", "us") collects, uses and shares information when you visit <strong>marketing-scale.com</strong>, fill in our form, or contact us. If you have questions, email <a href="mailto:info@marketing-scale.com">info@marketing-scale.com</a>.</p>
 
@@ -66,10 +64,9 @@ footer a{color:#fff}
     <tr><td>Google Analytics 4 &amp; Google Tag Manager (Google)</td><td>Traffic and usage statistics.</td><td><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses data</a> · <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Analytics opt-out</a></td></tr>
     <tr><td>Microsoft Clarity (Microsoft)</td><td>Heatmaps and session replays that show how visitors use the page, so we can improve it. Form inputs are masked.</td><td><a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener">Microsoft Privacy Statement</a></td></tr>
   </table></div>
-  <p>Meta, Google and Microsoft may use these cookies to collect or receive information from this and other websites, and use it to provide measurement services and target ads. You can also opt out of interest-based advertising from participating companies at <a href="https://optout.aboutads.info" target="_blank" rel="noopener">optout.aboutads.info</a> and <a href="https://optout.networkadvertising.org" target="_blank" rel="noopener">optout.networkadvertising.org</a>.</p>
-  <p><strong>Your choice on this site.</strong> You can opt out of these advertising and analytics cookies at any time with the button below (visitors in Europe are asked to accept or decline before any tracking starts):</p>
-  <p><button type="button" class="btn" id="consentToggle"></button><span class="status" id="consentStatus"></span></p>
-  <p>If your browser sends a <strong>Global Privacy Control</strong> signal, we treat it as a request to opt out of advertising cookies. Visitors from the EU, EEA, UK and Switzerland are not tracked for analytics or advertising unless they click Accept.</p>
+  <p>Meta, Google and Microsoft may use these cookies to collect or receive information from this and other websites, and use it to provide measurement services and target ads. You can opt out of interest-based advertising from participating companies at <a href="https://optout.aboutads.info" target="_blank" rel="noopener">optout.aboutads.info</a>, <a href="https://optout.networkadvertising.org" target="_blank" rel="noopener">optout.networkadvertising.org</a> and, in Europe, <a href="https://www.youronlinechoices.eu" target="_blank" rel="noopener">youronlinechoices.eu</a>. You can also block or delete cookies in your browser settings.</p>
+  <p><strong>Visitors in the EU, EEA, UK and Switzerland.</strong> We recognise these visitors by their browser's time zone. For them, the analytics and advertising tools above stay switched off until they click Accept on the cookie notice, and stay off if they decline. You can change your answer at any time with the "Cookie settings" link at the bottom of our <a href="./">home page</a>.</p>
+  <p><strong>Visitors elsewhere.</strong> These tools are on when you visit. To limit them, use the links above or your browser settings.</p>
 
   <h2>4. How we share information</h2>
   <p>We do not sell your personal information for money. We share it only with service providers that help us run the business, for example:</p>
@@ -80,14 +77,14 @@ footer a{color:#fff}
     <li>Our phone and text-messaging provider</li>
     <li>GitHub and Cloudflare (website hosting and domain services)</li>
   </ul>
-  <p>Letting advertising partners like Meta collect data through their pixel may count as "sharing" or "targeted advertising" under some U.S. state privacy laws. You can opt out using the button above, or by turning on Global Privacy Control. We may also disclose information if required by law or to protect our rights.</p>
+  <p>Advertising partners like Meta receive data through their pixel so that we can measure and target our ads; section 3 explains how to limit this. We may also disclose information if required by law or to protect our rights.</p>
   <p>We do not share your phone number or text-messaging consent with third parties for their own marketing.</p>
 
   <h2>5. How long we keep it</h2>
   <p>We keep your contact and form details for as long as we are in contact or working together, and generally for no more than 3 years after our last contact, unless the law requires longer. Analytics and advertising data are kept according to each provider's retention settings.</p>
 
   <h2>6. Your rights</h2>
-  <p>Depending on where you live, you may have the right to access, correct, delete or get a copy of your personal information, to opt out of targeted advertising, and to withdraw consent. If you are in the EU, EEA or UK, you may also object to or restrict processing and complain to your local data protection authority. We rely on your consent for cookies and on our legitimate interest and your request for replying to inquiries.</p>
+  <p>Depending on where you live, you may have the right to access, correct, delete or get a copy of your personal information, to opt out of targeted advertising, and to withdraw consent. If you are in the EU, EEA or UK, you may also object to or restrict processing and complain to your local data protection authority. Where the law requires it (for example in the EU, EEA and UK) we rely on your consent for cookies, which you can withdraw as described in section 3. For replying to inquiries we rely on your request and our legitimate interest.</p>
   <p>To make a request, email <a href="mailto:info@marketing-scale.com">info@marketing-scale.com</a>. We may need to verify your identity, and we will not treat you differently for using your rights.</p>
 
   <h2>7. International transfers</h2>
@@ -110,16 +107,5 @@ footer a{color:#fff}
 
 <script>
 document.getElementById('yr').textContent=new Date().getFullYear();
-(function(){
-  var st=document.getElementById('consentStatus'),bt=document.getElementById('consentToggle'),v=null;
-  try{v=localStorage.getItem('ms_consent');}catch(e){}
-  var off=v==='denied';
-  bt.textContent=off?'Turn cookies back on':'Opt out of these cookies';
-  st.textContent=off?'You are opted out on this browser.':'Cookies are currently on.';
-  bt.addEventListener('click',function(){
-    try{off?localStorage.removeItem('ms_consent'):localStorage.setItem('ms_consent','denied');}catch(e){}
-    location.reload();
-  });
-})();
 </script>
 </body></html>

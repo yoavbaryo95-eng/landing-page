@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<!-- Consent defaults — must run BEFORE GTM. Opt-in (denied) in EEA/UK/CH, opt-out (granted) elsewhere.
-     A saved choice from the cookie banner (localStorage "ms_consent") or a Global Privacy Control signal overrides. -->
+<!-- Consent — runs BEFORE GTM and decides whether GTM loads at all.
+     Europe (EEA/UK/CH, recognised by browser timezone): nothing loads until the visitor clicks Accept.
+     Everywhere else: GTM loads on arrival and the banner is a notice only.
+     A saved "denied" (localStorage "ms_consent") keeps GTM off anywhere. -->
 <script>
 window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 (function(){
   var OPT_IN=['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'];
   var D={ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'};
+  var G={ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'};
   gtag('consent','default',Object.assign({region:OPT_IN,wait_for_update:500},D));
-  gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+  gtag('consent','default',G);
   var c=null;try{c=localStorage.getItem('ms_consent');}catch(e){}
-  if(c==='denied'){
-    gtag('consent','update',D);
-    /* Block the Meta Pixel outright: its loader skips itself when window.fbq already exists,
-       so fbevents.js is never fetched. Keeps the opt-out honest without GTM consent settings. */
-    if(!window.fbq){var f=function(){};f.queue=[];f.loaded=true;f.version='2.0';f.push=f;f.callMethod=null;window.fbq=window._fbq=f;}
-    /* Clarity accepts a consent call once its tag has loaded. */
-    window.addEventListener('load',function(){try{if(window.clarity)clarity('consent',false);}catch(e){}});
-  }
-  else if(c==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}
-  else if(navigator.globalPrivacyControl===true){gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});}
+  var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
+  var eu=/^Europe\/|^Atlantic\/(Reykjavik|Canary|Madeira|Azores|Faroe)/.test(tz);
+  /* optin: this visitor gets Accept/Decline (and the "Cookie settings" link) instead of the plain notice */
+  window.msConsent={choice:c,optin:eu||c==='denied',track:c==='denied'?false:(eu?c==='granted':true),granted:G};
+  if(msConsent.optin)document.documentElement.classList.add('ms-optin');
+  if(c==='granted')gtag('consent','update',G);
 })();
 </script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<!-- Google Tag Manager — wrapped in msLoadGTM() so it can be held back until consent -->
+<script>function msLoadGTM(){if(window.msGTM)return;window.msGTM=true;
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-547ZFG6D');</script>
+})(window,document,'script','dataLayer','GTM-547ZFG6D');}
+if(msConsent.track)msLoadGTM();</script>
 <!-- End Google Tag Manager -->
 
 <meta charset="utf-8">
@@ -534,6 +535,9 @@ a{color:inherit;text-decoration:none}
 .foot .legal{display:flex;gap:16px;font-size:12.5px;color:#62789c}
 .foot .legal a:hover,.foot .legal button:hover{color:#fff}
 .foot .legal button{background:none;border:0;font:inherit;color:inherit;cursor:pointer;padding:0}
+/* "Cookie settings" is only for visitors who get a real choice (see the consent block in <head>) */
+.foot .legal [data-cookie-settings]{display:none}
+.ms-optin .foot .legal [data-cookie-settings]{display:inline}
 .fnote a{text-decoration:underline;text-underline-offset:2px}
 
 /* ========== motion: hero entrance + scroll reveal ==========
@@ -869,7 +873,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <div class="ckb" id="cookieBanner" role="region" aria-label="Cookie notice">
-  <!-- EU/UK/CH visitors: opt-in choice -->
+  <!-- EU/UK/CH visitors: opt-in choice — nothing loads before Accept -->
   <div class="ckb-optin">
     <p>We use cookies and similar tools (Google, Meta, Microsoft Clarity) to measure site traffic and improve our ads. You can accept or decline — see our <a href="privacy.html">Privacy Policy</a>.</p>
     <div class="ckb-row">
@@ -877,7 +881,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button type="button" class="btn btn-primary" data-consent="granted">Accept</button>
     </div>
   </div>
-  <!-- everyone else (US etc.): notice + opt-out -->
+  <!-- everyone else (US etc.): notice only -->
   <div class="ckb-notice">
     <p>We use cookies (Google, Meta, Microsoft Clarity) to measure traffic and improve our ads. See our <a href="privacy.html">Privacy Policy</a>.</p>
     <div class="ckb-row">
@@ -966,22 +970,31 @@ document.getElementById('leadForm').addEventListener('submit',function(e){
 })();
 document.getElementById('yr').textContent=new Date().getFullYear();
 
-/* ===== cookie banner — pairs with the consent defaults at the top of <head> ===== */
+/* ===== cookie banner — pairs with the consent block at the top of <head> ===== */
 (function(){
-  var bn=document.getElementById('cookieBanner');
-  /* EU/UK/CH (by browser timezone) get Accept/Decline; everyone else gets a notice + opt-out link.
-     Google applies the opt-in default by IP region on its own (see <head>). */
-  var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
-  if(/^Europe\/|^Atlantic\/(Reykjavik|Canary|Madeira|Azores|Faroe)/.test(tz))bn.classList.add('optin');
-  var saved=null;try{saved=localStorage.getItem('ms_consent');}catch(e){}
-  if(!saved)bn.classList.add('show');
+  var bn=document.getElementById('cookieBanner'),mc=window.msConsent;
+  if(mc.optin)bn.classList.add('optin');
+  /* show until a real answer exists; a dismissed notice doesn't count where a choice is required */
+  if(!mc.choice||(mc.optin&&mc.choice==='ack'))bn.classList.add('show');
+  /* first-party cookies the tools leave behind — removed when someone declines */
+  function clearCookies(){
+    var h=location.hostname.replace(/^www\./,'');
+    document.cookie.split(';').forEach(function(p){
+      var n=p.split('=')[0].trim();
+      if(!/^(_ga|_gid|_gcl|_fbp|_fbc|_clck|_clsk)/.test(n))return;
+      ['','; domain='+h,'; domain=.'+h].forEach(function(d){document.cookie=n+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'+d;});
+    });
+  }
+  /* analytics rewrites a cookie as the page unloads after a decline — sweep again on the next load */
+  if(mc.choice==='denied')clearCookies();
   function set(v){
     try{localStorage.setItem('ms_consent',v);}catch(e){}
     bn.classList.remove('show');
-    if(v==='ack')return; /* notice dismissed — keep default (opt-out model) */
-    gtag('consent','update',{ad_storage:v,ad_user_data:v,ad_personalization:v,analytics_storage:v});
-    if(typeof window.fbq==='function')fbq('consent',v==='granted'?'grant':'revoke');
-    dataLayer.push({event:'cookie_consent_update',cookie_consent:v});
+    if(v==='ack')return; /* notice dismissed */
+    if(v==='granted'){gtag('consent','update',mc.granted);msLoadGTM();return;}
+    /* declined: GTM stays off from here on. If it is already running, reload so it stops now. */
+    clearCookies();
+    if(window.msGTM)location.reload();
   }
   bn.querySelectorAll('[data-consent]').forEach(function(b){
     b.addEventListener('click',function(){set(b.getAttribute('data-consent'));});
