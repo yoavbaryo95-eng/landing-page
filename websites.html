@@ -578,11 +578,12 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 </div>
 
 <script>
-/* ===== CONFIG — shared with the main site ===== */
+/* ===== CONFIG — phone/WhatsApp shared with the main site; FORM_ENDPOINT is this page's own
+   Apps Script (separate "Websites — Leads" sheet and auto-reply), not the main site's ===== */
 var CONFIG = {
   WHATSAPP: "12674123407",
   WHATSAPP_MSG: "Hi Marketing Scale, I'd like to see a concept of my new homepage.",
-  FORM_ENDPOINT: "https://script.google.com/macros/s/AKfycbzHKAtcB7_EwUXuSUyxvaySb2NmvsLCv6EV_bjpIpTsQb0FdoO7sTk3JOQ7_JwKnrWy/exec"
+  FORM_ENDPOINT: "https://script.google.com/macros/s/AKfycbyYdZYIpq2XeRKC3yYDNt5Lm3Ws00x_NweqwxLFUgSGqdBIXSton89LS1ZFge7vg-T2LA/exec"
 };
 document.querySelectorAll('[data-wa]').forEach(function(a){
   a.href="https://wa.me/"+CONFIG.WHATSAPP+"?text="+encodeURIComponent(CONFIG.WHATSAPP_MSG);
