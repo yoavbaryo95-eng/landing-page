@@ -16,3 +16,7 @@ Thumbs.db
 # Creative/working output — not part of the deployed site
 Claude outputs/
 *.skill
+
+# Private documents (contracts, PDFs) — the repo is public, never publish these
+*.pdf
+*.docx
