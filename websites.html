@@ -315,6 +315,36 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
   .trust{gap:18px}
   .card{padding:26px}
 }
+
+/* ===== TESTIMONIALS  ===== */
+.proof{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.proof:before{content:"";position:absolute;inset:auto -10% -40% auto;width:620px;height:620px;border-radius:50%;
+  background:radial-gradient(circle,rgba(47,109,255,.22),transparent 65%);pointer-events:none}
+.proof .shead p{color:var(--muted-d)}
+.proof .shead h2{color:#fff}
+.quotes{display:grid;grid-template-columns:1.15fr 1.15fr .9fr;gap:22px;position:relative}
+.q{background:var(--ink-2);border:1px solid var(--line-d);border-radius:20px;padding:30px 30px 26px;display:flex;flex-direction:column}
+.q .mark{font-family:var(--disp);font-size:64px;line-height:.6;color:var(--pulse);height:30px}
+.q blockquote{font-size:17px;line-height:1.6;color:#e8eefb;margin:6px 0 22px;flex:1}
+.q blockquote b{color:#fff;font-weight:700}
+.q .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.q .tags span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-d);
+  border:1px solid var(--line-d);border-radius:999px;padding:5px 10px}
+.q .who{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line-d);padding-top:18px}
+.q .av{width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+  font-family:var(--disp);font-weight:700;font-size:17px;color:var(--ink);background:linear-gradient(135deg,var(--pulse),#8fb3ff)}
+.q .who strong{display:block;font-family:var(--disp);font-size:16px;letter-spacing:-.2px}
+.q .who small{color:var(--muted-d);font-size:13.5px}
+.q.open{background:transparent;border:1.5px dashed rgba(63,224,196,.45);justify-content:center}
+.q.open .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--pulse)}
+.q.open h3{font-size:24px;margin:12px 0 10px;color:#fff}
+.q.open p{color:var(--muted-d);font-size:15px;margin-bottom:22px}
+.q.open .dots{display:flex;gap:7px;margin-bottom:22px}
+.q.open .dots i{width:26px;height:6px;border-radius:3px;background:var(--line-d)}
+.q.open .dots i.on{background:var(--pulse)}
+.q.open a{align-self:flex-start}
+.q{position:relative}
+@media (max-width:900px){.quotes{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -429,6 +459,37 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
       <div class="c reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l5-5 4 4 8-8"/><path d="M15 8h5v5"/></svg></div>
         <h3>Marketing after launch</h3><p>When the site is live, the same person can run your ads, SEO and automation. No handover, no second agency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec proof on-dark" id="clients">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="kicker">From clients</div>
+      <h2>Clients who already trust Marketing Scale with their marketing.</h2>
+      <p>These clients came for ads and campaigns. The website offer is new, so the first five site owners will be the next names here.</p>
+    </div>
+    <div class="quotes">
+      <figure class="q reveal">
+        <div class="mark">&ldquo;</div>
+        <blockquote>Before, I was paying for clicks and hoping. Now every campaign is built around <b>getting the phone to ring</b>, and I get a clear report on what's working and what isn't.</blockquote>
+        <div class="tags"><span>Google Ads</span><span>Meta Ads</span></div>
+        <figcaption class="who"><div class="av">J</div><div><strong>Jerry</strong><small>Owner, custom travel agency</small></div></figcaption>
+      </figure>
+      <figure class="q reveal">
+        <div class="mark">&ldquo;</div>
+        <blockquote>They took over our Google and Meta campaigns and <b>understood the brand from the first week</b>. Fast answers, no fluff, and the numbers were always in front of us.</blockquote>
+        <div class="tags"><span>Google Ads</span><span>Meta Ads</span><span>E-commerce</span></div>
+        <figcaption class="who"><div class="av">S</div><div><strong>Shira</strong><small>Media manager, baby products brand</small></div></figcaption>
+      </figure>
+      <div class="q open reveal">
+        <div class="k">Founding client spot</div>
+        <h3>Your site could be the first one here.</h3>
+        <p>Five founding sites in the Philadelphia area at $1,500, in exchange for an honest review.</p>
+        <a href="#start" class="btn btn-primary">See if it's a fit</a>
       </div>
     </div>
   </div>
