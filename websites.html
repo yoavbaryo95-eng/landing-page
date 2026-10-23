@@ -197,6 +197,8 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 .field input,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:12px 14px;font-family:var(--body);font-size:15px;background:var(--paper)}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--signal);background:#fff}
 .field textarea{min-height:84px;resize:vertical}
+.field.bad input,.field.bad textarea{border-color:#e5484d;background:#fff}
+.ferr{display:block;margin-top:6px;font-size:13px;font-weight:600;color:#d1373d}
 .formcard .btn{width:100%}
 .formcard .btn[disabled]{opacity:.75;cursor:progress;transform:none;box-shadow:none}
 .fnote{font-size:12px;color:var(--muted);text-align:center;margin-top:13px}
@@ -520,11 +522,11 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
       </ul>
     </div>
     <div class="formcard reveal">
-      <form id="leadForm">
-        <div class="field"><label>Your name</label><input name="name" type="text" required placeholder="Your name"></div>
-        <div class="field"><label>Business name</label><input name="business" type="text" required placeholder="e.g. Rosen Plumbing, Bucks County"></div>
-        <div class="field"><label>What does your business do?</label><textarea name="message" required placeholder="A line about your services and who you serve (and your current site, if you have one)"></textarea></div>
-        <div class="field"><label>Email or phone / WhatsApp</label><input name="contact" type="text" required autocomplete="email" placeholder="you@email.com or +1 ..."></div>
+      <form id="leadForm" novalidate>
+        <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" required placeholder="Your name"></div>
+        <div class="field"><label for="f-business">Business name</label><input id="f-business" name="business" type="text" required placeholder="e.g. Rosen Plumbing, Bucks County"></div>
+        <div class="field"><label for="f-message">What does your business do?</label><textarea id="f-message" name="message" required placeholder="A line about your services and who you serve (and your current site, if you have one)"></textarea></div>
+        <div class="field"><label for="f-contact">Email or Phone / WhatsApp</label><input id="f-contact" name="contact" type="text" required autocomplete="email" placeholder="you@email.com or +1 ..."></div>
         <input type="hidden" name="source" value="websites">
         <button type="submit" class="btn btn-primary">Send my details</button>
         <p class="fnote">No spam. By sending, you agree we may contact you by email, phone, text or WhatsApp about your website (msg &amp; data rates may apply; reply STOP to opt out). See our <a href="privacy.html">Privacy Policy</a>.</p>
@@ -616,18 +618,48 @@ document.querySelectorAll('.qa button').forEach(function(b){
     ans.style.maxHeight=open?ans.scrollHeight+'px':0;
   });
 });
+/* our own required-field check (the form is novalidate): in-app browsers like Facebook's
+   often don't show the browser's "Please fill out this field" bubble, so a tap just did nothing */
+function fieldErr(el,msg){
+  var f=el.closest('.field'),s=f.querySelector('.ferr');
+  if(!s){s=document.createElement('small');s.className='ferr';f.appendChild(s);}
+  f.classList.add('bad');s.textContent=msg;el.setAttribute('aria-invalid','true');
+}
+function fieldOk(el){
+  var f=el.closest('.field'),s=f.querySelector('.ferr');
+  f.classList.remove('bad');if(s)s.remove();el.removeAttribute('aria-invalid');
+}
+document.querySelectorAll('#leadForm [required]').forEach(function(el){
+  el.addEventListener('input',function(){fieldOk(el);});
+});
 document.getElementById('leadForm').addEventListener('submit',function(e){
   e.preventDefault();
   var form=e.target;
+  if(form.dataset.sending)return;
+  var first=null;
+  form.querySelectorAll('[required]').forEach(function(el){
+    var v=el.value.trim(),msg='';
+    if(!v)msg='Please fill this in';
+    else if(el.name==='contact'&&v.indexOf('@')<0&&v.replace(/\D/g,'').length<7)msg='Add an email or a phone number';
+    if(msg){fieldErr(el,msg);if(!first)first=el;}else fieldOk(el);
+  });
+  if(first){
+    if(window.clarity)clarity('event','form_invalid');
+    first.scrollIntoView({block:'center'});first.focus();
+    return;
+  }
   /* the Sheet script takes ~3s to answer — block a second tap and show that it's working */
-  if(form.dataset.sending)return;form.dataset.sending='1';
+  form.dataset.sending='1';
   var btn=form.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Sending…';
-  var data=Object.fromEntries(new FormData(form).entries());
+  /* plain loop rather than Object.fromEntries, which older in-app browsers don't have */
+  var data={};new FormData(form).forEach(function(v,k){data[k]=v;});
   /* one contact field on the page, but the Sheet still gets separate email / phone columns */
   var ct=(data.contact||'').trim();delete data.contact;
   if(ct.indexOf('@')>-1){data.email=ct;data.phone='';}else{data.email='';data.phone=ct;}
   /* lets GTM/Meta tell website leads apart from the ones on the main site */
   dataLayer.push({event:'lead_submit',lead_source:'websites',content_name:'websites_lp'});
+  /* Clarity custom events: compare lead_submit with form_invalid to see how many get stuck */
+  if(window.clarity)clarity('event','lead_submit');
   var shown=false;
   function done(){if(shown)return;shown=true;
     /* greet by first name when there is one; the heading falls back to "Thanks!" */
@@ -659,14 +691,16 @@ document.getElementById('leadForm').addEventListener('submit',function(e){
   els.forEach(function(el){io.observe(el);});
 })();
 
-/* ===== sticky mobile CTA once the hero is scrolled past ===== */
+/* ===== sticky mobile CTA once the hero is scrolled past, hidden again while the form section is on screen ===== */
 (function(){
-  var hero=document.querySelector('.hero');
+  var hero=document.querySelector('.hero'),start=document.getElementById('start');
   if(!hero||!('IntersectionObserver' in window))return;
+  var inHero=true,inStart=false;
   var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){document.body.classList.toggle('show-mcta',!e.isIntersecting);});
+    entries.forEach(function(e){if(e.target===hero)inHero=e.isIntersecting;else inStart=e.isIntersecting;});
+    document.body.classList.toggle('show-mcta',!inHero&&!inStart);
   },{rootMargin:'-40px 0px 0px 0px',threshold:0});
-  io.observe(hero);
+  io.observe(hero);if(start)io.observe(start);
 })();
 
 /* ===== cookie banner — pairs with the consent block at the top of <head> ===== */
