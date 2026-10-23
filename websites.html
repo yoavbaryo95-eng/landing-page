@@ -34,13 +34,13 @@ if(msConsent.track)msLoadGTM();</script>
 <meta charset="utf-8">
 <script>try{if(matchMedia('(prefers-reduced-motion: no-preference)').matches)document.documentElement.classList.add('anim');}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Websites for small business, built to bring calls | Marketing Scale</title>
-<meta name="description" content="A 5-page website for your business, built to bring you calls. Tell me about your business, we'll talk for 15 minutes, and you'll see a homepage concept before you pay.">
+<title>A website ready for ads, built to bring you calls | Marketing Scale</title>
+<meta name="description" content="A website that turns visitors into calls and form leads, fast on phones and tracked from launch. If it's a fit, you'll see your homepage concept before you pay.">
 <link rel="canonical" href="https://marketing-scale.com/websites">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://marketing-scale.com/websites">
-<meta property="og:title" content="A website for your business, built to bring you calls">
-<meta property="og:description" content="Tell me about your business, we'll talk for 15 minutes, and if it's a fit you'll see a concept of your new homepage before you pay.">
+<meta property="og:title" content="A website that's ready for ads, built to bring you calls">
+<meta property="og:description" content="Fast on phones, tracked from launch, built to turn visitors into calls and form leads. If it's a fit, you'll see your homepage concept before you pay.">
 <meta property="og:image" content="https://marketing-scale.com/assets/og-websites.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/logo-badge.png">
@@ -109,14 +109,10 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 .hero h1{font-size:clamp(40px,5.3vw,64px);margin:18px 0 20px;letter-spacing:-2px}
 .hero h1 em{font-style:normal;color:var(--pulse)}
 .hero p.lead{font-size:18.5px;color:var(--muted-d);max-width:30em}
-.hero p.ident{margin-top:14px;padding-left:14px;border-left:2px solid var(--pulse);font-size:15.5px;color:#d4e0f2;max-width:32em}
 .hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-.hero .under{margin-top:16px;font-size:13.5px;color:var(--muted-d)}
-.trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:36px;padding-top:26px;border-top:1px solid var(--line-d);font-size:13.5px;color:var(--muted-d)}
-.trust b{display:block;color:#fff;font-family:var(--disp);font-weight:700;font-size:26px;letter-spacing:-1px;line-height:1.1}
 
 /* device mock */
-.mock{position:relative}
+.mock{position:relative;pointer-events:none} /* an example, not a page: nothing in it can be tapped */
 .mock .cap{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-d);margin-bottom:12px}
 .win{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 40px 80px -34px rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.1)}
 .win .bar{height:36px;background:#eef3fa;display:flex;align-items:center;gap:6px;padding:0 14px;border-bottom:1px solid var(--line)}
@@ -162,7 +158,7 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 .step h3{font-size:22px;margin-bottom:9px}
 .step p{color:var(--muted);font-size:15.2px;max-width:24em}
 
-/* package + price */
+/* package + concept card */
 .pkg{display:grid;grid-template-columns:1.12fr .88fr;gap:26px;align-items:start}
 .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:36px;box-shadow:0 22px 44px -34px rgba(9,21,41,.35)}
 .card h3{font-size:23px;margin-bottom:20px}
@@ -173,15 +169,9 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 .price::before{content:"";position:absolute;width:320px;height:320px;right:-120px;top:-150px;border-radius:50%;
   background:radial-gradient(circle,rgba(63,224,196,.26),transparent 68%)}
 .price .inner{position:relative;z-index:1}
-.price .tag-row{display:flex;align-items:baseline;gap:14px;margin-top:16px}
-.price .tag{font-family:var(--disp);font-weight:700;font-size:58px;letter-spacing:-2.4px;line-height:1}
-.price .cur{font-size:26px;vertical-align:super;margin-right:2px}
-.price .was{font-family:var(--disp);font-size:24px;color:var(--muted-d);text-decoration:line-through;text-decoration-thickness:2px}
-.price .note{color:var(--muted-d);font-size:14.5px;margin-top:14px}
-.price .spots{margin-top:18px;padding:11px 14px;border:1px dashed rgba(63,224,196,.4);border-radius:11px;
-  font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--pulse)}
-.price .btn{width:100%;margin-top:22px}
-.price .care{margin-top:14px;font-size:13.5px;color:var(--muted-d);text-align:center}
+.price h3{font-size:30px;letter-spacing:-1.2px;margin:16px 0 0;color:#fff}
+.price .note{color:var(--muted-d);font-size:15.5px;margin-top:14px}
+.price .btn{width:100%;margin-top:24px}
 
 /* founders strip */
 .strip-sec{background:var(--ink);color:#fff;padding:52px 0}
@@ -207,16 +197,12 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 .book .what{margin-top:28px;display:grid;gap:13px}
 .book .what li{list-style:none;display:flex;gap:11px;font-size:15px;color:var(--muted-d)}
 .book .what svg{width:19px;height:19px;color:var(--pulse);flex:none;margin-top:3px}
-.book .alt{margin-top:30px;padding-top:26px;border-top:1px solid var(--line-d)}
-.book .alt .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
 .formcard{background:#fff;color:var(--text);border-radius:20px;padding:32px;box-shadow:0 40px 70px -40px rgba(0,0,0,.7)}
 .field{margin-bottom:15px}
 .field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
 .field input,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:12px 14px;font-family:var(--body);font-size:15px;background:var(--paper)}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--signal);background:#fff}
 .field textarea{min-height:84px;resize:vertical}
-.fprice{margin-bottom:18px;padding:10px 12px;border-radius:10px;background:rgba(47,109,255,.08);color:var(--signal-d);
-  font-size:13.5px;font-weight:700;text-align:center}
 .formcard .btn{width:100%}
 .formcard .btn[disabled]{opacity:.75;cursor:progress;transform:none;box-shadow:none}
 .fnote{font-size:12px;color:var(--muted);text-align:center;margin-top:13px}
@@ -282,7 +268,6 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 .mcta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;padding:11px 14px;
   background:rgba(9,21,41,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line-d)}
 .mcta .btn{flex:1;font-size:14.5px;min-height:48px;padding:10px 12px;white-space:nowrap}
-.mcta .btn-sms{background:transparent;color:#fff;border-color:rgba(63,224,196,.5)}
 
 /* motion — only once the head script confirms no reduced-motion preference */
 .anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,.7,.3,1)}
@@ -301,18 +286,24 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
   .book .intro{display:contents}
   .book .intro>*{order:1;width:100%}
   .book .formcard{order:2;margin-top:28px}
-  .book .intro>.what,.book .intro>.alt{order:3}
+  .book .intro>.what{order:3}
 }
 @media (max-width:560px){
-  .hero{padding-top:48px}
+  /* first screen on a phone: the one CTA has to sit in the top half (Meta traffic leaves fast) */
+  .nav .wrap{height:62px}
+  #start{scroll-margin-top:62px}
+  .hero{padding-top:16px}
+  .hero .kicker{font-size:10.5px;letter-spacing:.16em;line-height:1.5}
+  .hero h1{font-size:32px;letter-spacing:-1.2px;margin:8px 0 10px}
+  .hero p.lead{font-size:16px;line-height:1.48}
+  .hero .cta{margin-top:16px}
   .ckb{left:10px;right:10px;bottom:10px;padding:10px 12px;font-size:12px;line-height:1.4}
   .ckb p{margin-bottom:8px}
   .ckb .btn{min-height:36px;padding:6px 14px;font-size:13px}
   body.show-mcta .mcta{display:flex}
   body.show-mcta{padding-bottom:72px}
   body.show-mcta .ckb{bottom:82px}
-  .hero .cta .btn,.book .alt .row .btn,.strip-sec .btn{width:100%}
-  .trust{gap:18px}
+  .hero .cta .btn,.strip-sec .btn{width:100%}
   .card{padding:26px}
 }
 
@@ -365,23 +356,15 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 <header class="hero on-dark">
   <div class="wrap">
     <div>
-      <div class="kicker">Philadelphia area · Built by a U.S. &amp; Israel marketer</div>
-      <h1>A website for your business, <em>built to bring you calls</em>.</h1>
-      <p class="lead">Tell me about your business. We'll talk for 15 minutes, and if it's a fit, you'll see a concept of your new homepage before you pay.</p>
-      <p class="ident">Whether you moved here and built a business from zero, or you're American with one foot in Israel, I've worked in both markets, in both languages.</p>
+      <div class="kicker">Philadelphia area · <span class="nb">Websites built by a marketer</span></div>
+      <h1>A website that's ready for ads, <em>built to bring you calls</em>.</h1>
+      <p class="lead">A site that turns visitors into calls and form leads, fast on phones and tracked from launch. Tell me about your business, and if it's a fit, you'll see your homepage concept before you pay.</p>
       <div class="cta">
-        <a href="#start" class="btn btn-primary">Let's talk about your site</a>
-        <a href="sms:+12674123407" class="btn btn-line">Text me</a>
-      </div>
-      <p class="under">No payment and no commitment to see the concept.</p>
-      <div class="trust">
-        <div><b>5</b>pages, built for you</div>
-        <div><b><span id="callMins" data-to="15">15</span></b>minute call to start</div>
-        <div><b>2</b>markets, one partner</div>
+        <a href="#start" class="btn btn-primary">See if it's a fit</a>
       </div>
     </div>
     <div class="mock">
-      <div class="cap">Your homepage concept</div>
+      <div class="cap">Example: your homepage concept</div>
       <div class="win">
         <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url"></span></div>
         <div class="site">
@@ -418,7 +401,7 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
       <div class="steps">
         <div class="step done">
           <div class="pin">01</div>
-          <div class="day">Two minutes</div>
+          <div class="day">A quick form</div>
           <h3>Tell me about your business</h3>
           <p>A short form: what you do, who you serve and where.</p>
         </div>
@@ -449,8 +432,8 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
     </div>
     <div class="split">
       <div class="c reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 010 18a15 15 0 010-18"/></svg></div>
-        <h3>Two markets, one partner</h3><p>If your business sits between Israel and the U.S., you don't have to explain the context twice. I work in both markets, in both languages.</p>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg></div>
+        <h3>Ready for ads</h3><p>Tracking is set up from launch, so when you run ads you can see which ones bring calls and which ones don't.</p>
       </div>
       <div class="c reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.4 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></div>
@@ -470,7 +453,7 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
     <div class="shead reveal">
       <div class="kicker">From clients</div>
       <h2>Clients who already trust Marketing Scale with their marketing.</h2>
-      <p>These clients came for ads and campaigns. The website offer is new, so the first five site owners will be the next names here.</p>
+      <p>These clients came to Marketing Scale for ads and campaigns. The same approach now goes into building websites.</p>
     </div>
     <div class="quotes">
       <figure class="q reveal">
@@ -486,22 +469,22 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
         <figcaption class="who"><div class="av">S</div><div><strong>Shira</strong><small>Media manager, baby products brand</small></div></figcaption>
       </figure>
       <div class="q open reveal">
-        <div class="k">Founding client spot</div>
-        <h3>Your site could be the first one here.</h3>
-        <p>Five founding sites in the Philadelphia area at $1,500, in exchange for an honest review.</p>
+        <div class="k">Next on this page</div>
+        <h3>This could be your business.</h3>
+        <p>Tell me what you do. If it's a fit, you'll see your homepage concept before you pay.</p>
         <a href="#start" class="btn btn-primary">See if it's a fit</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PACKAGE + PRICE -->
+<!-- PACKAGE + CONCEPT CARD -->
 <section class="sec white">
   <div class="wrap">
     <div class="shead reveal">
       <div class="kicker">The package</div>
       <h2>Everything a small business actually needs. Nothing it doesn't.</h2>
-      <p>One price, one timeline, no hourly surprises.</p>
+      <p>One package, one timeline, no hourly surprises.</p>
     </div>
     <div class="pkg">
       <div class="card reveal">
@@ -519,12 +502,10 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
       </div>
       <div class="card price on-dark reveal">
         <div class="inner">
-          <div class="kicker">Founding client price</div>
-          <div class="tag-row"><span class="tag"><span class="cur">$</span>1,500</span><span class="was">$2,500</span></div>
-          <p class="note">One-time, for the first 5 businesses. In exchange, you give a short review and let your site be shown as an example.</p>
-          <div class="spots">5 founding spots · then $2,500</div>
-          <a href="#start" class="btn btn-primary">Let's talk about your site</a>
-          <div class="care">Optional care plan afterwards: $89/month for hosting, updates and support.</div>
+          <div class="kicker">Start with a concept</div>
+          <h3>See your homepage before you pay</h3>
+          <p class="note">If it's a fit, I design your homepage first. You decide after you see it.</p>
+          <a href="#start" class="btn btn-primary">See if it's a fit</a>
         </div>
       </div>
     </div>
@@ -535,10 +516,10 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 <section class="strip-sec on-dark">
   <div class="wrap reveal">
     <div>
-      <h3>Building the first five founding sites in the Philadelphia area.</h3>
-      <p>Marketing Scale is new here on purpose: a small number of clients, each one getting a partner rather than a ticket number. Your business can be one of the five.</p>
+      <h3>Websites for small businesses in the Philadelphia area.</h3>
+      <p>A small number of clients at a time, each one getting a partner rather than a ticket number.</p>
     </div>
-    <a href="#start" class="btn btn-primary">Claim a spot</a>
+    <a href="#start" class="btn btn-primary">See if it's a fit</a>
   </div>
 </section>
 
@@ -554,17 +535,9 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div>If it's a fit, I design a concept of your homepage</div></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div>You see it before you pay anything</div></li>
       </ul>
-      <div class="alt">
-        <div style="font-size:14.5px;color:var(--muted-d)">Prefer to just message?</div>
-        <div class="row">
-          <a href="sms:+12674123407" class="btn btn-line">Text me</a>
-          <a href="#" data-wa class="btn btn-line">WhatsApp</a>
-        </div>
-      </div>
     </div>
     <div class="formcard reveal">
       <form id="leadForm">
-        <p class="fprice">Founding price: $1,500 · 5 spots · then $2,500</p>
         <div class="field"><label>Your name</label><input name="name" type="text" required placeholder="Your name"></div>
         <div class="field"><label>Business name</label><input name="business" type="text" required placeholder="e.g. Rosen Plumbing, Bucks County"></div>
         <div class="field"><label>What does your business do?</label><textarea name="message" required placeholder="A line about your services and who you serve (and your current site, if you have one)"></textarea></div>
@@ -592,8 +565,7 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
       <div class="qa"><button type="button">I already have a website. Is it worth replacing?<span class="pm">+</span></button><div class="ans"><p>Often, yes. Most older sites are slow on phones and give visitors no clear next step. Mention the link in the form and we'll look at it together on the call.</p></div></div>
       <div class="qa"><button type="button">Who writes the text and supplies the photos?<span class="pm">+</span></button><div class="ans"><p>I write the text for you, based on what you tell me about the business. Photos of your work, team or place are welcome; where you don't have any, we use quality stock images.</p></div></div>
       <div class="qa"><button type="button">What do I need to provide?<span class="pm">+</span></button><div class="ans"><p>Your logo if you have one, any photos you want used, and about 30 minutes of your time to answer questions and approve the pages. That's it.</p></div></div>
-      <div class="qa"><button type="button">What happens after the site is live?<span class="pm">+</span></button><div class="ans"><p>It's your site and your domain. You can leave it as is, or take the $89/month care plan for hosting, updates and support. Ads, SEO and automation are available separately when you're ready.</p></div></div>
-      <div class="qa"><button type="button">Why is the price so low?<span class="pm">+</span></button><div class="ans"><p>Because Marketing Scale is new in the Philadelphia area and I want the first five clients to be a strong reference. In exchange for the price you give a short review and let your site be shown as an example. After five clients the price is $2,500.</p></div></div>
+      <div class="qa"><button type="button">What happens after the site is live?<span class="pm">+</span></button><div class="ans"><p>It's your site and your domain. You can leave it as is, or take an optional care plan for hosting, updates and support. Ads, SEO and automation are available separately when you're ready.</p></div></div>
     </div>
   </div>
 </section>
@@ -622,7 +594,6 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 
 <div class="mcta on-dark">
   <a href="#start" class="btn btn-primary">Let's talk</a>
-  <a href="sms:+12674123407" class="btn btn-sms">Text me</a>
 </div>
 
 <div class="ckb" id="cookieBanner" role="region" aria-label="Cookie notice">
@@ -688,7 +659,7 @@ document.getElementById('leadForm').addEventListener('submit',function(e){
   }else{done();}
 });
 
-/* ===== scroll reveal + the count-up on the "15 minute call" stat (skipped when motion is reduced) ===== */
+/* ===== scroll reveal (skipped when motion is reduced) ===== */
 (function(){
   var animate=document.documentElement.classList.contains('anim')&&'IntersectionObserver' in window;
   var els=document.querySelectorAll('.reveal');
@@ -703,12 +674,6 @@ document.getElementById('leadForm').addEventListener('submit',function(e){
     });
   },{threshold:.16,rootMargin:'0px 0px -8% 0px'});
   els.forEach(function(el){io.observe(el);});
-
-  var n=document.getElementById('callMins'),to=+n.dataset.to,start=null;
-  function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/1600,1);
-    n.textContent=Math.round((0.5-Math.cos(p*Math.PI)/2)*to);
-    if(p<1)requestAnimationFrame(step);}
-  requestAnimationFrame(step);
 })();
 
 /* ===== sticky mobile CTA once the hero is scrolled past ===== */
