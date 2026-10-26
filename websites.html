@@ -609,25 +609,27 @@ var CONFIG = {
 };
 /* ===== land at the top. Instagram/Facebook in-app browsers were moving visitors straight down to the
    form (Clarity: ~80% scroll depth with 0 clicks in 2-6s, vs ~5% in Safari/Chrome). For the first
-   2.5s, any scroll the visitor didn't make is undone, and a tap carried over from the ad onto a
-   "#start" button in the first 0.8s is ignored. A real #start link in the URL still jumps. ===== */
+   2.5s, any scroll the visitor didn't make is undone. A real #start link in the URL still jumps.
+   The visitor's first touch of any kind switches this off for good. The listeners sit on window in the
+   capture phase, so another script calling stopPropagation can't hide that touch: when it did, the
+   guard undid the visitor's own swipes and taps and the page looked frozen. ===== */
 (function(){
   try{if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(e){}
   if(location.hash)return;
-  var t0=Date.now(),user=false,logged=false;
-  function mark(){user=true;}
-  ['touchstart','wheel','keydown','mousedown'].forEach(function(ev){addEventListener(ev,mark,{passive:true});});
-  document.addEventListener('click',function(e){
-    var a=e.target.closest&&e.target.closest('a[href="#start"]');
-    if(a&&Date.now()-t0<800)e.preventDefault();
-  },true);
+  var EV=['touchstart','touchmove','pointerdown','mousedown','wheel','keydown'],on=true,logged=false;
+  function stop(){
+    if(!on)return;on=false;
+    removeEventListener('scroll',guard,true);
+    EV.forEach(function(ev){removeEventListener(ev,stop,true);});
+  }
   function guard(){
-    if(user||window.scrollY<=0)return;
+    if(!on||window.scrollY<=0)return;
     try{window.scrollTo({top:0,behavior:'instant'});}catch(e){window.scrollTo(0,0);}
     if(!logged&&window.clarity){logged=true;clarity('event','auto_scroll_blocked');}
   }
-  addEventListener('scroll',guard,{passive:true});
-  setTimeout(function(){removeEventListener('scroll',guard);},2500);
+  EV.forEach(function(ev){addEventListener(ev,stop,{capture:true,passive:true});});
+  addEventListener('scroll',guard,{capture:true,passive:true});
+  setTimeout(stop,2500);
 })();
 document.querySelectorAll('[data-wa]').forEach(function(a){
   a.href="https://wa.me/"+CONFIG.WHATSAPP+"?text="+encodeURIComponent(CONFIG.WHATSAPP_MSG);
