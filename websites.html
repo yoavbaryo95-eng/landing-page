@@ -631,6 +631,19 @@ var CONFIG = {
   addEventListener('scroll',guard,{capture:true,passive:true});
   setTimeout(stop,2500);
 })();
+/* ===== UTMs from the ad's landing URL, kept for the visit in case the page reloads without them ===== */
+var UTM=(function(){
+  var u={},q=location.search,saved=null;
+  ['utm_content','utm_term'].forEach(function(k){
+    var m=q.match(new RegExp('[?&]'+k+'=([^&#]*)'));
+    if(m)try{u[k]=decodeURIComponent(m[1].replace(/\+/g,' '));}catch(e){u[k]=m[1];}
+  });
+  try{
+    if(u.utm_content||u.utm_term)sessionStorage.setItem('ms_utm',JSON.stringify(u));
+    else saved=JSON.parse(sessionStorage.getItem('ms_utm')||'null');
+  }catch(e){}
+  return saved||u;
+})();
 document.querySelectorAll('[data-wa]').forEach(function(a){
   a.href="https://wa.me/"+CONFIG.WHATSAPP+"?text="+encodeURIComponent(CONFIG.WHATSAPP_MSG);
   a.target="_blank";a.rel="noopener";
@@ -680,6 +693,8 @@ document.getElementById('leadForm').addEventListener('submit',function(e){
   /* one contact field on the page, but the Sheet still gets separate email / phone columns */
   var ct=(data.contact||'').trim();delete data.contact;
   if(ct.indexOf('@')>-1){data.email=ct;data.phone='';}else{data.email='';data.phone=ct;}
+  /* which ad and keyword brought the lead (Sheet columns utm_content / utm_term) */
+  data.utm_content=UTM.utm_content||'';data.utm_term=UTM.utm_term||'';
   /* lets GTM/Meta tell website leads apart from the ones on the main site */
   dataLayer.push({event:'lead_submit',lead_source:'websites',content_name:'websites_lp'});
   /* Clarity custom events: compare lead_submit with form_invalid to see how many get stuck */
