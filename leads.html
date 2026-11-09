@@ -619,13 +619,14 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 </div>
 
 <script>
-/* ===== CONFIG - phone/WhatsApp shared with the main site. FORM_ENDPOINT is the same Apps Script as
-   /websites and /ads ("Websites - Leads" sheet). This page sends source "leads": the script needs a
-   branch for it, otherwise the lead gets whichever reply email the script falls back to ===== */
+/* ===== CONFIG - phone/WhatsApp shared with the main site. FORM_ENDPOINT is the homepage's Apps Script
+   ("Marketing Scale - Leads" sheet), not the /websites and /ads one, so the lead gets the homepage's
+   reply email. That script knows name / email / phone / business / message, so the two dropdowns are
+   also written into message (see the submit handler) ===== */
 var CONFIG = {
   WHATSAPP: "12674123407",
   WHATSAPP_MSG: "Hi Marketing Scale, I'd like to talk about getting more leads.",
-  FORM_ENDPOINT: "https://script.google.com/macros/s/AKfycbyYdZYIpq2XeRKC3yYDNt5Lm3Ws00x_NweqwxLFUgSGqdBIXSton89LS1ZFge7vg-T2LA/exec"
+  FORM_ENDPOINT: "https://script.google.com/macros/s/AKfycbzHKAtcB7_EwUXuSUyxvaySb2NmvsLCv6EV_bjpIpTsQb0FdoO7sTk3JOQ7_JwKnrWy/exec"
 };
 /* ===== land at the top. Instagram/Facebook in-app browsers were moving visitors straight down to the
    form (Clarity: ~80% scroll depth with 0 clicks in 2-6s, vs ~5% in Safari/Chrome). For the first
@@ -727,6 +728,8 @@ document.getElementById('leadForm').addEventListener('submit',function(e){
   /* one contact field on the page, but the Sheet still gets separate email / phone columns */
   var ct=(data.contact||'').trim();delete data.contact;
   if(ct.indexOf('@')>-1){data.email=ct;data.phone='';}else{data.email='';data.phone=ct;}
+  /* the homepage Sheet has a message column but none for the dropdowns: put them there so they aren't lost */
+  data.message='Leads page. Advertises on: '+(data.ad_platform||'-')+'. Monthly ad spend: '+(data.ad_spend||'-')+'.';
   /* which ad and keyword brought the lead (Sheet columns utm_content / utm_term) */
   data.utm_content=UTM.utm_content||'';data.utm_term=UTM.utm_term||'';
   /* lets GTM/Meta tell these leads apart from /websites, /ads and the main site */
