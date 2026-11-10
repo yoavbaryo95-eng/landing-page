@@ -45,211 +45,202 @@ if(msConsent.track)msLoadGTM();</script>
 <link rel="icon" type="image/png" href="assets/logo-badge.png">
 <link rel="apple-touch-icon" href="assets/logo-badge.png">
 <style>
-/* fonts — the same files the rest of the brand uses */
+/* fonts: the same files the rest of the brand uses */
 @font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url("assets/fonts/plus-jakarta-sans-latin.woff2") format('woff2')}
 @font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url("assets/fonts/space-grotesk-latin.woff2") format('woff2')}
 @font-face{font-family:'Space Mono';font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/space-mono-latin.woff2") format('woff2')}
 
+/* /leads is the light page of the site: paper and white surfaces, ink text, blue for action,
+   mint as a highlighter. Ink as a surface is kept for the footer and the incoming-call card only. */
 :root{
-  --ink:#091529;--ink-2:#0d1f3d;--signal:#2f6dff;--signal-d:#1f55da;--pulse:#3fe0c4;
-  --paper:#f5f8fc;--card:#fff;--line:#dde6f2;--line-d:rgba(140,170,220,.16);
-  --text:#0c1a35;--muted:#5b6d89;--muted-d:#9db2d4;
+  --ink:#091529;--signal:#2f6dff;--action:#2358e6;--action-d:#1b47c2;--pulse:#3fe0c4;
+  --paper:#f5f8fc;--white:#fff;--tint-b:#e9f0ff;--tint-m:#e4f9f4;--line:#d9e3f1;
+  --text:#0c1a35;--muted:#4f617d;--muted-d:#9db2d4;
   --disp:'Space Grotesk',sans-serif;--body:'Plus Jakarta Sans',system-ui,sans-serif;--mono:'Space Mono',ui-monospace,Menlo,monospace;
-  --sec:76px;--shadow-cta:0 12px 26px -12px rgba(47,109,255,.62);
+  --sec:104px;--ease:cubic-bezier(.16,1,.3,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-#start{scroll-margin-top:74px}
-body{font-family:var(--body);color:var(--text);background:var(--paper);line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth;scrollbar-color:#b9c8de var(--paper)}
+#start{scroll-margin-top:68px}
+body{font-family:var(--body);color:var(--text);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;caret-color:var(--action)}
+::selection{background:var(--pulse);color:var(--ink)}
 a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px solid var(--pulse);outline-offset:3px;border-radius:5px}
-.wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 24px}
-h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
+:focus-visible{outline:2.5px solid var(--action);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--disp);letter-spacing:-.03em;line-height:1.05;text-wrap:balance}
+h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
 .nb{white-space:nowrap}
-.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--signal)}
-.on-dark .kicker,.hero .kicker,.band .kicker{color:var(--pulse)}
+.sec{padding:var(--sec) 0}
+.sec.white{background:var(--white)}
 
 /* logo lock-up */
-.logo{display:inline-flex;align-items:center;gap:13px}
-.logo .disc{width:44px;height:44px;border-radius:50%;background:#fff;flex:none;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 0 3px rgba(63,224,196,.28)}
+.logo{display:inline-flex;align-items:center;gap:12px}
+.logo .disc{width:42px;height:42px;border-radius:50%;background:#fff;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 1px var(--line),0 0 0 4px rgba(63,224,196,.3)}
 .logo .disc img{width:62%;height:auto;display:block}
-.logo.lg .disc{width:60px;height:60px;box-shadow:0 0 0 4px rgba(63,224,196,.3)}
-.logo .wm{font-family:var(--disp);font-weight:700;letter-spacing:-.6px;line-height:1;font-size:19px}
-.logo .tl{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;margin-top:4px;color:var(--muted)}
-.on-dark .logo .wm{color:#fff}
-.on-dark .logo .tl{color:var(--muted-d)}
+.logo .wm{font-family:var(--disp);font-weight:700;letter-spacing:-.6px;line-height:1;font-size:18.5px}
+.logo .tl{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;margin-top:4px;color:var(--muted);display:block}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--disp);font-weight:600;font-size:15.5px;
-  padding:14px 26px;border-radius:12px;border:1.5px solid transparent;cursor:pointer;transition:all .18s;min-height:50px}
-.btn-primary{background:var(--signal);color:#fff}
-.btn-primary:hover{background:var(--signal-d);transform:translateY(-2px);box-shadow:var(--shadow-cta)}
-.btn-line{background:transparent;color:var(--text);border-color:var(--line)}
-.btn-line:hover{border-color:var(--signal);color:var(--signal);transform:translateY(-2px)}
-.on-dark .btn-line{color:#fff;border-color:var(--line-d)}
-.on-dark .btn-line:hover{border-color:var(--pulse);color:var(--pulse)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--disp);font-weight:600;font-size:16px;
+  padding:14px 26px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;min-height:52px;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),background-color .2s,border-color .2s,color .2s}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-primary{background:var(--action);color:#fff;box-shadow:0 10px 22px -12px rgba(35,88,230,.8)}
+.btn-primary:hover{background:var(--action-d);transform:translateY(-2px);box-shadow:0 16px 28px -12px rgba(35,88,230,.75)}
+.btn-line{background:#fff;color:var(--text);border-color:var(--line)}
+.btn-line:hover{border-color:var(--action);color:var(--action);transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
 
 /* nav */
-.nav{position:sticky;top:0;z-index:50;background:rgba(9,21,41,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-d)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px}
-.nav .btn{padding:10px 20px;min-height:42px;font-size:14.5px}
+.nav{position:sticky;top:0;z-index:50;background:rgba(245,248,252,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav .btn{padding:9px 18px;min-height:42px;font-size:14.5px;border-radius:12px}
 
-/* hero */
-.hero{position:relative;background:var(--ink);color:#fff;padding:64px 0 var(--sec);overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;
-  background:radial-gradient(900px 480px at 18% -10%,rgba(47,109,255,.34),transparent 62%),
-             radial-gradient(680px 420px at 88% 12%,rgba(63,224,196,.16),transparent 60%)}
-.hero::after{content:"";position:absolute;inset:0;opacity:.5;
-  background-image:linear-gradient(rgba(140,170,220,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(140,170,220,.075) 1px,transparent 1px);
-  background-size:62px 62px;
-  -webkit-mask-image:radial-gradient(760px 520px at 30% 30%,#000,transparent 75%);mask-image:radial-gradient(760px 520px at 30% 30%,#000,transparent 75%)}
-.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.03fr .97fr;gap:56px;align-items:center}
-.hero h1{font-size:clamp(40px,5.3vw,64px);margin:18px 0 20px;letter-spacing:-2px}
-.hero h1 em{font-style:normal;color:var(--pulse)}
-.hero p.lead{font-size:18.5px;color:var(--muted-d);max-width:30em}
-.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+/* hero: type only, centered */
+.hero{padding:88px 0 0;text-align:center}
+.hero .wrap{max-width:900px}
+.hero h1{font-size:clamp(42px,8.2vw,88px);font-weight:700;letter-spacing:-.04em;line-height:.98}
+.hero h1 em{font-style:normal;color:var(--signal);display:block}
+/* mint highlighter under the two words the page is about */
+.hero h1 .mark{background:linear-gradient(var(--pulse),var(--pulse)) no-repeat 0 88%/100% .2em}
+.hero p.lead{font-size:clamp(17px,2.1vw,20.5px);color:var(--muted);max-width:33em;margin:26px auto 0;text-wrap:pretty}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:34px}
+.alt-contact{margin-top:16px;font-size:14px;color:var(--muted)}
+.alt-contact a,.talk a{color:var(--text);font-weight:600;text-decoration:underline;text-decoration-color:var(--pulse);text-decoration-thickness:2px;text-underline-offset:4px}
+.alt-contact a:hover,.talk a:hover{color:var(--action)}
+/* the line that leads from the hero into the path below */
+.hero .lead-in{display:block;width:2px;height:72px;margin:44px auto 0;background:linear-gradient(to bottom,transparent,var(--pulse))}
 
-/* device mock */
-.mock{position:relative;pointer-events:none} /* an example, not a page: nothing in it can be tapped */
-.mock .cap{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-d);margin-bottom:12px}
-.win{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 40px 80px -34px rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.1)}
-.win .bar{height:36px;background:#eef3fa;display:flex;align-items:center;gap:6px;padding:0 14px;border-bottom:1px solid var(--line)}
-.win .dot{width:9px;height:9px;border-radius:50%;background:#cfdaea}
-.win .url{margin-left:10px;height:17px;flex:1;border-radius:9px;background:#fff;border:1px solid var(--line)}
-.site{padding:20px 20px 0;color:var(--text)}
-.site .top{display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--line)}
-.site .brandline{font-family:var(--disp);font-weight:700;font-size:12.5px;color:var(--ink)}
-.site .menu{display:flex;gap:9px}
-.site .menu i{display:block;width:26px;height:5px;border-radius:3px;background:#dde6f2}
-.site h4{font-family:var(--disp);font-size:20px;letter-spacing:-.8px;margin:18px 0 7px;line-height:1.14}
-.site p{font-size:11.5px;color:var(--muted);line-height:1.5}
-.site .cta-row{display:flex;gap:8px;margin-top:13px}
-.site .b1{background:var(--signal);color:#fff;font-family:var(--disp);font-weight:600;font-size:11px;padding:8px 14px;border-radius:8px}
-.site .b2{border:1.4px solid var(--line);color:var(--muted);font-family:var(--disp);font-weight:600;font-size:11px;padding:8px 14px;border-radius:8px}
-.site .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:18px}
-.site .cards div{height:52px;border-radius:9px;background:#eef3fa;border:1px solid var(--line)}
-.site .strip{height:46px;border-radius:10px;background:#dbe6f7;margin-top:12px}
-.mock .phone{position:absolute;right:-26px;bottom:-54px;width:126px;background:#fff;border:7px solid #05101f;border-radius:22px;overflow:hidden;
-  box-shadow:0 26px 46px -22px rgba(0,0,0,.8)}
-.mock .phone .site{padding:12px 11px 0}
-.mock .phone .site h4{font-size:13px;margin:11px 0 5px}
-.mock .phone .site p{font-size:8.5px}
-.mock .phone .cards{grid-template-columns:1fr;gap:6px}
-.mock .phone .cards div{height:26px}
-.mock .phone .site .menu i{width:15px;height:4px}
+/* the path: search, page, call */
+.path{background:var(--white);padding:0 0 var(--sec)}
+.path h2{text-align:center;padding-top:26px;max-width:15em;margin:0 auto}
+.stops{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px;position:relative}
+.stop{position:relative}
+.stop h3{font-size:25px;font-weight:700;margin:24px 0 6px}
+.stop p{color:var(--muted);font-size:16px;max-width:19em}
+/* connector between one picture and the next */
+.stop+.stop::before{content:"";position:absolute;left:-28px;top:103px;width:28px;height:2px;background:var(--pulse)}
+.ill{height:208px;border-radius:24px;background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:12px;padding:22px;overflow:hidden;pointer-events:none;user-select:none}
+/* 1: the search */
+.sbar{display:flex;align-items:center;gap:10px;height:44px;border-radius:22px;background:#fff;border:1px solid var(--line);padding:0 16px;font-size:14.5px;font-weight:600;box-shadow:0 6px 14px -10px rgba(9,21,41,.35)}
+.sbar svg{width:17px;height:17px;color:var(--muted);flex:none}
+.sbar span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.res{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.res small{display:block;font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--muted)}
+.res b{display:block;font-family:var(--disp);font-size:16px;color:var(--action);margin:3px 0 9px;letter-spacing:-.01em}
+.res i{display:block;height:7px;border-radius:4px;background:#e3eaf4}
+.res i+i{width:62%;margin-top:6px}
+/* 2: the landing page */
+.pg{align-self:center;width:min(100%,232px);background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px 16px;box-shadow:0 14px 26px -18px rgba(9,21,41,.45)}
+.pg .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.pg .top u{width:44px;height:8px;border-radius:4px;background:var(--ink);text-decoration:none}
+.pg .top s{width:16px;height:8px;border-radius:4px;background:#d5deeb;text-decoration:none}
+.pg b{display:block;font-family:var(--disp);font-size:17px;line-height:1.12;letter-spacing:-.02em}
+.pg i{display:block;height:7px;width:78%;border-radius:4px;background:#e3eaf4;margin:9px 0 14px}
+.pg .row{display:flex;gap:8px}
+.pg .row span{flex:1;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:12.5px;font-weight:600}
+.pg .row .a{background:var(--action);color:#fff}
+.pg .row .b{border:1.5px solid var(--line);color:var(--text)}
+/* 3: the call. The one dark object on the page, and the one thing that moves. */
+.ill.call{background:var(--tint-m);border-color:#c5efe5;align-items:center}
+.ring{display:flex;align-items:center;gap:14px;width:min(100%,262px);background:var(--ink);color:#fff;border-radius:20px;padding:15px 18px;box-shadow:0 20px 34px -18px rgba(9,21,41,.7)}
+.ring .ph{position:relative;width:44px;height:44px;border-radius:50%;background:var(--pulse);color:var(--ink);display:flex;align-items:center;justify-content:center;flex:none}
+.ring .ph svg{width:20px;height:20px;position:relative}
+.ring .ph::before,.ring .ph::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--pulse);opacity:0}
+.anim .ring .ph::before,.anim .ring .ph::after{animation:ring 2.4s var(--ease) infinite}
+.anim .ring .ph::after{animation-delay:.8s}
+@keyframes ring{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(2.1);opacity:0}}
+.ring b{display:block;font-family:var(--disp);font-size:16px;letter-spacing:-.01em}
+.ring small{display:block;font-size:13px;color:var(--muted-d);margin-top:1px;white-space:nowrap}
 
-/* sections */
-.sec{padding:var(--sec) 0}
-.sec.white{background:#fff}
-.shead{max-width:680px;margin-bottom:38px}
-.shead h2{font-size:clamp(29px,3.7vw,42px);margin-top:14px}
-.shead p{color:var(--muted);margin-top:16px;font-size:16.5px}
+/* three promises, set as lines of type rather than cards */
+.promise h2{max-width:13em}
+.promise .by{color:var(--muted);font-size:17px;max-width:34em;margin-top:18px}
+.rows{margin-top:44px;border-top:1px solid var(--line)}
+.rowp{display:grid;grid-template-columns:52px 1fr 1fr;gap:24px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line)}
+.rowp .ic{width:52px;height:52px;border-radius:16px;background:var(--tint-b);color:var(--action);display:flex;align-items:center;justify-content:center}
+.rowp .ic svg{width:24px;height:24px}
+.rowp h3{font-size:clamp(23px,2.9vw,33px);font-weight:700}
+.rowp p{color:var(--muted);font-size:17px}
 
-/* timeline */
-.tl-wrap{position:relative}
-.tl-line{position:absolute;left:0;right:0;top:27px;height:2px;background:linear-gradient(90deg,var(--signal),var(--pulse))}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;position:relative}
-.step .pin{width:56px;height:56px;border-radius:50%;background:#fff;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;
-  font-family:var(--disp);font-weight:700;font-size:15px;color:var(--signal);position:relative;z-index:1}
-.step.done .pin{background:var(--signal);color:#fff;border-color:var(--signal);box-shadow:0 0 0 7px rgba(47,109,255,.12)}
-.step .day{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:20px 0 8px}
-.step h3{font-size:22px;margin-bottom:9px}
-.step p{color:var(--muted);font-size:15.2px;max-width:24em}
-
-/* package + concept card */
-.pkg{display:grid;grid-template-columns:1.12fr .88fr;gap:26px;align-items:start}
-.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:36px;box-shadow:0 22px 44px -34px rgba(9,21,41,.35)}
-.card h3{font-size:23px;margin-bottom:20px}
-.inc{display:grid;gap:14px}
-.inc li{list-style:none;display:flex;gap:13px;align-items:flex-start;font-size:15.5px}
-.inc svg{width:21px;height:21px;flex:none;color:var(--signal);margin-top:3px}
-.price{position:relative;background:linear-gradient(165deg,#0d1f3d,#091529);color:#fff;border:1px solid rgba(63,224,196,.22);overflow:hidden}
-.price::before{content:"";position:absolute;width:320px;height:320px;right:-120px;top:-150px;border-radius:50%;
-  background:radial-gradient(circle,rgba(63,224,196,.26),transparent 68%)}
-.price .inner{position:relative;z-index:1}
-.price h3{font-size:30px;letter-spacing:-1.2px;margin:16px 0 0;color:#fff}
-.price .note{color:var(--muted-d);font-size:15.5px;margin-top:14px}
-.price .btn{width:100%;margin-top:24px}
-
-/* why */
-.split{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.split .c{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px;transition:transform .2s,box-shadow .2s}
-.split .c:hover{transform:translateY(-3px);box-shadow:0 26px 46px -32px rgba(9,21,41,.4)}
-.split .c .ic{width:44px;height:44px;border-radius:12px;background:rgba(47,109,255,.1);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-.split .c .ic svg{width:22px;height:22px;color:var(--signal)}
-.split .c h3{font-size:19.5px;margin-bottom:9px}
-.split .c p{color:var(--muted);font-size:15px}
+/* clients */
+.proof{background:var(--tint-m)}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:44px}
+.q blockquote{font-family:var(--disp);font-size:clamp(20px,2.2vw,25px);line-height:1.34;letter-spacing:-.015em;font-weight:500}
+.q blockquote b{font-weight:700;background:linear-gradient(var(--pulse),var(--pulse)) no-repeat 0 90%/100% .3em}
+.q .who{display:flex;align-items:center;gap:12px;margin-top:22px}
+.q .av{width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:var(--ink);color:#fff;font-family:var(--disp);font-weight:700}
+.q .who strong{display:block;font-family:var(--disp);font-size:15.5px}
+.q .who small{display:block;font-size:13.5px;color:#3d5570}
 
 /* form */
-.book{position:relative;background:var(--ink);color:#fff;overflow:hidden}
-.book::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 420px at 80% 0%,rgba(47,109,255,.3),transparent 62%)}
-.book .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start}
-.book h2{font-size:clamp(29px,3.7vw,42px);margin-top:14px}
-.book p.sub{color:var(--muted-d);margin-top:16px;font-size:16.5px}
-.book .what{margin-top:28px;display:grid;gap:13px}
-.book .what li{list-style:none;display:flex;gap:11px;font-size:15px;color:var(--muted-d)}
-.book .what svg{width:19px;height:19px;color:var(--pulse);flex:none;margin-top:3px}
-.formcard{background:#fff;color:var(--text);border-radius:20px;padding:32px;box-shadow:0 40px 70px -40px rgba(0,0,0,.7)}
-.field{margin-bottom:15px}
-.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px}
-.field input,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:12px 14px;font-family:var(--body);font-size:15px;background:var(--paper)}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--signal);background:#fff}
-.field textarea{min-height:84px;resize:vertical}
-.field.bad input,.field.bad textarea{border-color:#e5484d;background:#fff}
-.ferr{display:block;margin-top:6px;font-size:13px;font-weight:600;color:#d1373d}
-.formcard .btn{width:100%}
+.book{background:var(--tint-b)}
+.book .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.book .sub{font-size:18px;color:var(--muted);margin-top:18px;max-width:24em}
+.book .talk{margin-top:26px;font-size:15.5px;color:var(--muted)}
+.formcard{background:#fff;border-radius:26px;padding:34px;box-shadow:0 34px 60px -40px rgba(9,21,41,.5),0 2px 6px -2px rgba(9,21,41,.08)}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:14px;font-weight:600;margin-bottom:7px}
+.field input,.field select{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;font-family:var(--body);font-size:16px;color:var(--text);background-color:var(--paper);transition:border-color .2s,background-color .2s}
+.field input::placeholder{color:#6a7c97}
+.field select{padding-right:40px;-webkit-appearance:none;appearance:none;
+  background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f617d' stroke-width='2.4'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center/16px}
+.field input:focus,.field select:focus{outline:none;border-color:var(--action);background-color:#fff}
+.field.bad input,.field.bad select{border-color:#d1373d;background-color:#fff}
+.ferr{display:block;margin-top:6px;font-size:13px;font-weight:600;color:#c22f35}
+.formcard .btn{width:100%;margin-top:4px}
 .formcard .btn[disabled]{opacity:.75;cursor:progress;transform:none;box-shadow:none}
-.fnote{font-size:12px;color:var(--muted);text-align:center;margin-top:13px}
+.fnote{font-size:12px;color:var(--muted);text-align:center;margin-top:14px}
 .fnote a{text-decoration:underline;text-underline-offset:2px}
-.fok{display:none;text-align:center;padding:30px 10px}
-.fok .ic{width:54px;height:54px;border-radius:50%;background:rgba(63,224,196,.16);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
-.fok .ic svg{width:27px;height:27px;color:#0e9c81}
-.fok h3{font-size:22px;margin-bottom:8px}
-.fok p{color:var(--muted);font-size:15px}
-.fok p a{color:var(--signal);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.fok{display:none;text-align:center;padding:30px 6px}
+.fok .ic{width:56px;height:56px;border-radius:50%;background:var(--tint-m);color:#0b7f69;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.fok .ic svg{width:27px;height:27px}
+.fok h3{font-size:24px;margin-bottom:8px}
+.fok p{color:var(--muted);font-size:15.5px}
+.fok p a{color:var(--action);font-weight:600;text-decoration:underline;text-underline-offset:2px}
 
 /* faq */
-.faq{max-width:800px}
+.faq{max-width:780px;margin-top:28px;border-top:1px solid var(--line)}
 .qa{border-bottom:1px solid var(--line)}
 .qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;background:none;border:0;cursor:pointer;
-  font-family:var(--disp);font-weight:600;font-size:17.5px;color:var(--text);text-align:left;padding:21px 0}
-.qa .pm{color:var(--signal);font-size:22px;flex:none;transition:transform .2s}
+  font-family:var(--disp);font-weight:600;font-size:18px;color:var(--text);text-align:left;padding:22px 0}
+.qa button:hover{color:var(--action)}
+.qa .pm{color:var(--action);font-size:24px;line-height:1;flex:none;transition:transform .3s var(--ease)}
 .qa.open .pm{transform:rotate(45deg)}
-.qa .ans{max-height:0;overflow:hidden;transition:max-height .28s ease}
-.qa .ans p{color:var(--muted);font-size:15.5px;padding-bottom:21px;max-width:64em}
-
-/* closing band — mirrors the ad creatives */
-.band{background:var(--ink);border-top:1px solid var(--line-d)}
-.band .wrap{display:flex;align-items:center;gap:28px;padding-top:42px;padding-bottom:42px;flex-wrap:wrap}
-.band .div{width:2px;height:64px;background:var(--line-d)}
-.band .cta{margin-left:auto;text-align:right}
-.band .cta .k{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-d);margin-bottom:10px}
+.qa .ans{max-height:0;overflow:hidden;transition:max-height .32s var(--ease)}
+.qa .ans p{color:var(--muted);font-size:16px;padding-bottom:22px;max-width:40em}
+.qa .ans a{color:var(--action);font-weight:600;text-decoration:underline;text-underline-offset:2px}
 
 /* footer */
-.foot{background:var(--ink);color:var(--muted-d);padding:26px 0 34px}
-.foot .wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;font-size:13.5px}
+.foot{background:var(--ink);color:var(--muted-d);padding:28px 0 36px}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;font-size:14px}
 .foot a:hover{color:#fff}
-.foot .legal{display:flex;gap:16px;font-size:12.5px;color:#62789c}
+.foot .legal{display:flex;gap:16px;font-size:13px;color:#8298ba}
 .foot .legal button{background:none;border:0;font:inherit;color:inherit;cursor:pointer;padding:0}
 /* "Cookie settings" is only for visitors who get a real choice (see the consent block in <head>) */
 .foot .legal [data-cookie-settings]{display:none}
 .ms-optin .foot .legal [data-cookie-settings]{display:inline}
 
+/* sticky mobile CTA */
+.mcta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.mcta .btn{flex:1;font-size:15px;min-height:48px;padding:10px 12px;white-space:nowrap}
+.mcta .btn-line{flex:.55}
+
 /* cookie banner */
 .ckb{position:fixed;left:16px;right:16px;bottom:16px;z-index:70;display:none;max-width:420px;margin-left:auto;
-  background:var(--ink);color:var(--muted-d);border:1px solid var(--line-d);border-radius:14px;padding:16px 18px;
+  background:var(--ink);color:var(--muted-d);border:1px solid rgba(140,170,220,.2);border-radius:16px;padding:16px 18px;
   box-shadow:0 18px 40px -16px rgba(9,21,41,.55);font-size:13.5px;line-height:1.5}
 .ckb.show{display:block}
 .ckb p{margin-bottom:12px}
 .ckb a{color:#fff;text-decoration:underline;text-underline-offset:2px}
 .ckb .ckb-row{display:flex;gap:10px;justify-content:flex-end}
-.ckb .btn{font-size:14px;min-height:40px;padding:8px 18px}
-.ckb .btn-line{color:#fff;border-color:var(--line-d)}
+.ckb .btn{font-size:14px;min-height:40px;padding:8px 18px;border-radius:11px;box-shadow:none}
+.ckb .btn-line{background:transparent;color:#fff;border-color:rgba(140,170,220,.3)}
 .ckb .ckb-x{position:absolute;top:-11px;right:-7px;width:28px;height:28px;border-radius:50%;padding:0;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;background:var(--ink);border:1px solid var(--line-d);color:var(--muted-d)}
+  display:flex;align-items:center;justify-content:center;background:var(--ink);border:1px solid rgba(140,170,220,.3);color:var(--muted-d)}
 .ckb .ckb-x::after{content:"";position:absolute;inset:-8px} /* finger-sized tap area */
-.ckb .ckb-x:hover{color:#fff;border-color:var(--muted-d)}
+.ckb .ckb-x:hover{color:#fff}
 .ckb .ckb-x svg{width:12px;height:12px}
 .ckb.optin .ckb-x{display:none}
 .ckb .ckb-optin{display:none}
@@ -259,105 +250,41 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 .ckb .ckb-notice p{margin:0}
 .ckb .ckb-notice .ckb-row{flex:none}
 
-/* sticky mobile CTA */
-.mcta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;padding:11px 14px;
-  background:rgba(9,21,41,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line-d)}
-.mcta .btn{flex:1;font-size:14.5px;min-height:48px;padding:10px 12px;white-space:nowrap}
-
-/* motion — only once the head script confirms no reduced-motion preference */
-.anim .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,.7,.3,1)}
+/* motion: only once the head script confirms no reduced-motion preference */
+.anim .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .anim .reveal.in{opacity:1;transform:none}
 
-@media (max-width:900px){
-  :root{--sec:70px}
-  .hero .wrap,.pkg,.book .wrap{grid-template-columns:1fr;gap:40px}
-  .steps,.split{grid-template-columns:1fr;gap:30px}
-  .tl-line{display:none}
-  .mock .phone{display:none}
-  .nav .btn{display:none}
-  .band .cta{margin-left:0;text-align:left;width:100%}
-  .band .div{display:none}
-  .book .wrap{display:flex;flex-direction:column;gap:0}
-  .book .intro{display:contents}
-  .book .intro>*{order:1;width:100%}
-  .book .formcard{order:2;margin-top:28px}
-  .book .intro>.what{order:3}
-}
-@media (max-width:560px){
-  /* first screen on a phone: the one CTA has to sit in the top half (Meta traffic leaves fast) */
+@media (max-width:860px){
+  :root{--sec:72px}
+  .hero{padding-top:52px}
+  .hero h1{line-height:1}
+  .hero .cta{flex-direction:column;margin-top:28px}
+  .hero .cta .btn{width:100%}
+  .hero .lead-in{height:52px;margin-top:32px}
   .nav .wrap{height:62px}
-  #start{scroll-margin-top:62px}
-  .hero{padding-top:16px}
-  .hero .kicker{font-size:10.5px;letter-spacing:.16em;line-height:1.5}
-  .hero h1{font-size:32px;letter-spacing:-1.2px;margin:8px 0 10px}
-  .hero p.lead{font-size:16px;line-height:1.48}
-  .hero .cta{margin-top:16px}
+  .logo .disc{width:38px;height:38px}
+  .stops{grid-template-columns:1fr;gap:0;margin-top:36px}
+  .stop{padding-bottom:44px}
+  .stop:last-child{padding-bottom:0}
+  /* the connector turns and runs down between the pictures */
+  .stop+.stop::before{left:50%;top:-34px;width:2px;height:24px}
+  .ill{height:196px}
+  .stop h3{margin-top:18px}
+  .stop p{max-width:none}
+  .rowp{grid-template-columns:44px 1fr;gap:4px 16px;padding:24px 0;align-items:start}
+  .rowp .ic{width:44px;height:44px;border-radius:14px;grid-row:span 2}
+  .rowp p{grid-column:2;font-size:16px}
+  .quotes{grid-template-columns:1fr;gap:40px;margin-top:32px}
+  .book .wrap{grid-template-columns:1fr;gap:32px}
+  .formcard{padding:24px 20px;border-radius:22px}
+  body.show-mcta .mcta{display:flex}
+  body.show-mcta{padding-bottom:72px}
+  body.show-mcta .ckb{bottom:86px}
   .ckb{left:10px;right:10px;bottom:10px;padding:10px 12px;font-size:12px;line-height:1.4}
   .ckb p{margin-bottom:8px}
   .ckb .btn{min-height:36px;padding:6px 14px;font-size:13px}
-  body.show-mcta .mcta{display:flex}
-  body.show-mcta{padding-bottom:72px}
-  body.show-mcta .ckb{bottom:82px}
-  .hero .cta .btn{width:100%}
-  .card{padding:26px}
+  .foot .wrap{flex-direction:column;align-items:flex-start}
 }
-
-/* ===== TESTIMONIALS  ===== */
-.proof{background:var(--ink);color:#fff;position:relative;overflow:hidden}
-.proof:before{content:"";position:absolute;inset:auto -10% -40% auto;width:620px;height:620px;border-radius:50%;
-  background:radial-gradient(circle,rgba(47,109,255,.22),transparent 65%);pointer-events:none}
-.proof .shead p{color:var(--muted-d)}
-.proof .shead h2{color:#fff}
-.quotes{display:grid;grid-template-columns:1.15fr 1.15fr .9fr;gap:22px;position:relative}
-.q{background:var(--ink-2);border:1px solid var(--line-d);border-radius:20px;padding:30px 30px 26px;display:flex;flex-direction:column}
-.q .mark{font-family:var(--disp);font-size:64px;line-height:.6;color:var(--pulse);height:30px}
-.q blockquote{font-size:17px;line-height:1.6;color:#e8eefb;margin:6px 0 22px;flex:1}
-.q blockquote b{color:#fff;font-weight:700}
-.q .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
-.q .tags span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-d);
-  border:1px solid var(--line-d);border-radius:999px;padding:5px 10px}
-.q .who{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line-d);padding-top:18px}
-.q .av{width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
-  font-family:var(--disp);font-weight:700;font-size:17px;color:var(--ink);background:linear-gradient(135deg,var(--pulse),#8fb3ff)}
-.q .who strong{display:block;font-family:var(--disp);font-size:16px;letter-spacing:-.2px}
-.q .who small{color:var(--muted-d);font-size:13.5px}
-.q.open{background:transparent;border:1.5px dashed rgba(63,224,196,.45);justify-content:center}
-.q.open .k{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--pulse)}
-.q.open h3{font-size:24px;margin:12px 0 10px;color:#fff}
-.q.open p{color:var(--muted-d);font-size:15px;margin-bottom:22px}
-.q.open .dots{display:flex;gap:7px;margin-bottom:22px}
-.q.open .dots i{width:26px;height:6px;border-radius:3px;background:var(--line-d)}
-.q.open .dots i.on{background:var(--pulse)}
-.q.open a{align-self:flex-start}
-.q{position:relative}
-@media (max-width:900px){.quotes{grid-template-columns:1fr}}
-
-/* ===== /ads: the account-check card in the hero, and the form's dropdowns ===== */
-.audit{background:#fff;color:var(--text);border-radius:16px;padding:22px;box-shadow:0 40px 80px -34px rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.1)}
-.audit .ah{display:flex;justify-content:space-between;align-items:center;font-family:var(--disp);font-weight:700;font-size:17px;padding-bottom:14px;border-bottom:1px solid var(--line)}
-.audit .pill{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--signal);background:rgba(47,109,255,.1);border-radius:999px;padding:5px 10px}
-.audit .row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
-.audit .row:last-child{border-bottom:0;padding-bottom:0}
-.audit .row b{display:block;font-size:14.5px}
-.audit .row small{display:block;font-size:12.5px;color:var(--muted);line-height:1.4}
-.audit .st{flex:none;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:5px 10px;font-weight:700}
-.audit .warn .st{color:#a35a00;background:#fff1dc}
-.audit .ok .st{color:#0e8a72;background:rgba(63,224,196,.18)}
-.field select{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:12px 40px 12px 14px;font-family:var(--body);font-size:15px;color:var(--text);
-  background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235b6d89' stroke-width='2.4'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center/16px;
-  -webkit-appearance:none;appearance:none}
-.field select:focus{outline:none;border-color:var(--signal);background-color:#fff}
-.field.bad select{border-color:#e5484d;background-color:#fff}
-/* ===== /leads: call button beside the main CTA, and the small text / WhatsApp line under it ===== */
-.hero .cta .btn-line{color:#fff;border-color:rgba(255,255,255,.28)}
-.hero .cta .btn-line:hover{border-color:var(--pulse);color:var(--pulse)}
-.alt-contact{margin-top:14px;font-size:13.5px;color:var(--muted-d)}
-.alt-contact a{color:#dfe9fb;text-decoration:underline;text-underline-offset:3px}
-.alt-contact a:hover{color:var(--pulse)}
-.mcta .btn-line{color:#fff;border-color:rgba(255,255,255,.28);flex:.6}
-.audit .lead-ok .st{color:#0e8a72;background:rgba(63,224,196,.18)}
-.audit .skip .st{color:#62789c;background:#eef2f8}
-.audit .skip b,.audit .skip small{opacity:.62}
 </style>
 </head>
 <body>
@@ -365,174 +292,103 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-547ZFG6D" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<nav class="nav on-dark">
+<nav class="nav">
   <div class="wrap">
     <a href="./" class="logo">
       <span class="disc"><img src="assets/logo-mark.png" alt="Marketing Scale" width="120" height="80"></span>
-      <span><span class="wm">Marketing Scale</span><span class="tl" style="display:block">Leads &amp; calls</span></span>
+      <span><span class="wm">Marketing Scale</span><span class="tl">Leads &amp; calls</span></span>
     </a>
     <a href="#start" class="btn btn-primary">See if it's a fit</a>
   </div>
 </nav>
 
-<header class="hero on-dark">
+<header class="hero">
   <div class="wrap">
-    <div>
-      <div class="kicker">Service businesses in the U.S. · <span class="nb">Google &amp; Meta ads</span></div>
-      <h1>More quality leads. <em>More real phone calls.</em></h1>
-      <p class="lead">Google Ads, Meta ads and landing pages built to convert, run by one person. Every call and form is tracked back to the ad that brought it.</p>
-      <div class="cta">
-        <a href="#start" class="btn btn-primary">See if it's a fit</a>
-        <a href="tel:+12674123407" class="btn btn-line" data-contact="call_click">Call (267) 412-3407</a>
-      </div>
-      <p class="alt-contact">Or <a href="sms:+12674123407" data-contact="sms_click">text</a> / <a href="#" data-wa data-contact="whatsapp_click">WhatsApp</a> the same number. Hebrew or English.</p>
+    <h1>More quality leads. <em>More real <span class="mark">phone calls.</span></em></h1>
+    <p class="lead">Google Ads, Meta ads and landing pages that turn clicks into calls, for service businesses in the U.S.</p>
+    <div class="cta">
+      <a href="#start" class="btn btn-primary">See if it's a fit</a>
+      <a href="tel:+12674123407" class="btn btn-line" data-contact="call_click"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>Call (267) 412-3407</a>
     </div>
-    <div class="mock">
-      <div class="cap">Example: what you see each week</div>
-      <div class="audit">
-        <div class="ah"><span>Leads this week</span><span class="pill">Example</span></div>
-        <div class="row lead-ok"><div><b>Phone call · 4 min</b><small>Google Ads · "kitchen remodel near me"</small></div><span class="st">Lead</span></div>
-        <div class="row lead-ok"><div><b>Quote form</b><small>Meta ad · bathroom before and after</small></div><span class="st">Lead</span></div>
-        <div class="row lead-ok"><div><b>Phone call · 7 min</b><small>Google Ads · "roof leak repair"</small></div><span class="st">Lead</span></div>
-        <div class="row skip"><div><b>Phone call · 9 sec</b><small>Wrong number · not counted as a lead</small></div><span class="st">Skipped</span></div>
-      </div>
-    </div>
+    <p class="alt-contact">Or <a href="sms:+12674123407" data-contact="sms_click">text</a> / <a href="#" data-wa data-contact="whatsapp_click">WhatsApp</a>. Hebrew or English.</p>
+    <span class="lead-in" aria-hidden="true"></span>
   </div>
 </header>
 
-<!-- HOW IT WORKS -->
-<section class="sec white">
+<!-- THE PATH: search, page, call -->
+<section class="path">
   <div class="wrap">
-    <div class="shead reveal">
-      <div class="kicker">How it works</div>
-      <h2>A short call, campaigns built around calls, numbers you can read.</h2>
-    </div>
-    <div class="tl-wrap reveal">
-      <div class="tl-line"></div>
-      <div class="steps">
-        <div class="step done">
-          <div class="pin">01</div>
-          <div class="day">15 minutes</div>
-          <h3>A quick call</h3>
-          <p>I reach out within one business day to set it up. We talk about your business, your area and what a good lead looks like for you.</p>
+    <h2>From a search to a ringing phone.</h2>
+    <div class="stops">
+      <div class="stop reveal">
+        <div class="ill" aria-hidden="true">
+          <div class="sbar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg><span>kitchen remodel near me</span></div>
+          <div class="res"><small>Sponsored</small><b>Kitchen remodeling in Hartford</b><i></i><i></i></div>
         </div>
-        <div class="step">
-          <div class="pin">02</div>
-          <div class="day">Built around calls</div>
-          <h3>Campaigns and a landing page</h3>
-          <p>Google Ads, Meta or both, with a page built to turn a click into a call or a quote request.</p>
+        <h3>They search.</h3>
+        <p>Someone nearby looks for exactly what you do.</p>
+      </div>
+      <div class="stop reveal">
+        <div class="ill" aria-hidden="true">
+          <div class="pg">
+            <div class="top"><u></u><s></s></div>
+            <b>Your kitchen, done right.</b><i></i>
+            <div class="row"><span class="a">Call now</span><span class="b">Get a quote</span></div>
+          </div>
         </div>
-        <div class="step">
-          <div class="pin">03</div>
-          <div class="day">Ongoing</div>
-          <h3>You see what came in</h3>
-          <p>Calls and forms, each tied to the ad that brought it. Budget moves toward what brings real jobs.</p>
+        <h3>They land.</h3>
+        <p>A page built to turn the click into a call.</p>
+      </div>
+      <div class="stop reveal">
+        <div class="ill call" aria-hidden="true">
+          <div class="ring"><span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></span><span><b>Incoming call</b><small>From your Google ad</small></span></div>
         </div>
+        <h3>You get the call.</h3>
+        <p>And you see which ad brought it.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WHY -->
-<section class="sec">
+<!-- THREE PROMISES -->
+<section class="sec promise">
   <div class="wrap">
-    <div class="shead reveal">
-      <div class="kicker">Why this works</div>
-      <h2>Clicks are easy to buy. Good leads aren't.</h2>
-      <p>I've spent the last five years managing ad budgets for companies in the U.S. and Israel. Lead quality is mostly decided before the ad runs: who it reaches, what it promises and what the account counts as a lead.</p>
-    </div>
-    <div class="split">
-      <div class="c reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg></div>
-        <h3>Tracked to the ad</h3><p>Call and form tracking comes first. If you can't see which ad made the phone ring, every decision is a guess.</p>
-      </div>
-      <div class="c reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></div>
-        <h3>Your leads, only yours</h3><p>The calls come from ads for your business and go straight to you. Nothing is resold or shared with anyone else.</p>
-      </div>
-      <div class="c reveal">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l5-5 4 4 8-8"/><path d="M15 8h5v5"/></svg></div>
-        <h3>One person, not an agency</h3><p>The person you talk to on the first call is the person who builds and runs your campaigns. No account managers in between.</p>
-      </div>
+    <h2>Clicks are easy to buy. Good leads aren't.</h2>
+    <p class="by">Five years managing ad budgets for companies in the U.S. and Israel taught me where lead quality is decided.</p>
+    <div class="rows">
+      <div class="rowp reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 018 0V11"/></svg></div><h3>Your leads, only yours.</h3><p>Never resold, never shared with another business.</p></div>
+      <div class="rowp reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 006.4 0l3-3A4.5 4.5 0 0013 4.6l-1.2 1.2"/><path d="M14 10a4.5 4.5 0 00-6.4 0l-3 3A4.5 4.5 0 0011 19.4l1.2-1.2"/></svg></div><h3>Tracked to the ad.</h3><p>Every call and form tied to the ad that brought it.</p></div>
+      <div class="rowp reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0115 0"/></svg></div><h3>One person, not an agency.</h3><p>You talk to the person who runs your campaigns.</p></div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="sec proof on-dark" id="clients">
+<!-- CLIENTS -->
+<section class="sec proof" id="clients">
   <div class="wrap">
-    <div class="shead reveal">
-      <div class="kicker">From clients</div>
-      <h2>Clients who trust Marketing Scale with their ads.</h2>
-    </div>
+    <h2>From clients</h2>
     <div class="quotes">
       <figure class="q reveal">
-        <div class="mark">&ldquo;</div>
-        <blockquote>Before, I was paying for clicks and hoping. Now every campaign is built around <b>getting the phone to ring</b>, and I get a clear report on what's working and what isn't.</blockquote>
-        <div class="tags"><span>Google Ads</span><span>Meta Ads</span></div>
+        <blockquote>&ldquo;Before, I was paying for clicks and hoping. Now every campaign is built around <b>getting the phone to ring</b>, and I get a clear report on what's working and what isn't.&rdquo;</blockquote>
         <figcaption class="who"><div class="av">J</div><div><strong>Jerry</strong><small>Owner, custom travel agency</small></div></figcaption>
       </figure>
       <figure class="q reveal">
-        <div class="mark">&ldquo;</div>
-        <blockquote>They took over our Google and Meta campaigns and <b>understood the brand from the first week</b>. Fast answers, no fluff, and the numbers were always in front of us.</blockquote>
-        <div class="tags"><span>Google Ads</span><span>Meta Ads</span><span>E-commerce</span></div>
+        <blockquote>&ldquo;They took over our Google and Meta campaigns and <b>understood the brand from the first week</b>. Fast answers, no fluff, and the numbers were always in front of us.&rdquo;</blockquote>
         <figcaption class="who"><div class="av">S</div><div><strong>Shira</strong><small>Media manager, baby products brand</small></div></figcaption>
       </figure>
-      <div class="q open reveal">
-        <div class="k">Next on this page</div>
-        <h3>This could be your business.</h3>
-        <p>Tell me what you do and where. We start with a 15-minute call.</p>
-        <a href="#start" class="btn btn-primary">See if it's a fit</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHAT'S INCLUDED -->
-<section class="sec white">
-  <div class="wrap">
-    <div class="shead reveal">
-      <div class="kicker">What's included</div>
-      <h2>What I set up and run.</h2>
-      <p>Three things that decide whether an ad budget turns into jobs, plus the tracking to prove it.</p>
-    </div>
-    <div class="pkg">
-      <div class="card reveal">
-        <h3>Leads and calls, start to finish</h3>
-        <ul class="inc">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Google Ads:</b> search campaigns for people already looking for your service</div></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Meta ads:</b> Facebook and Instagram, for people in your area who don't know you yet</div></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Landing pages:</b> built to turn a click into a call or a quote request</div></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Call and form tracking:</b> every lead tied to the ad that brought it</div></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div><b>Reporting:</b> plain numbers on leads and cost per lead</div></li>
-        </ul>
-      </div>
-      <div class="card price on-dark reveal">
-        <div class="inner">
-          <div class="kicker">Start with a call</div>
-          <h3>15 minutes to see if it's a fit</h3>
-          <p class="note">No commitment on the call. If it's a fit, I'll lay out how I'd set up your campaigns and what it costs, before anything starts.</p>
-          <a href="#start" class="btn btn-primary">See if it's a fit</a>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
 <!-- FORM -->
-<section class="sec book on-dark" id="start">
+<section class="sec book" id="start">
   <div class="wrap">
-    <div class="intro reveal">
-      <div class="kicker">Start here</div>
+    <div class="intro">
       <h2>Tell me about your business.</h2>
-      <p class="sub">Fill this in and I'll reach out within one business day to set up a <span class="nb">15-minute</span> call.</p>
-      <ul class="what">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div>A quick call about your business and your area</div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div>We agree on what counts as a good lead for you</div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 13l4 4L19 7"/></svg><div>You hear how I'd set it up and what it costs</div></li>
-      </ul>
+      <p class="sub">I'll reach out within one business day to set up a <span class="nb">15-minute</span> call.</p>
+      <p class="talk">Rather talk now? <a href="tel:+12674123407" data-contact="call_click">Call (267) 412-3407</a></p>
     </div>
-    <div class="formcard reveal">
+    <div class="formcard">
       <form id="leadForm" novalidate>
         <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" required autocomplete="name" placeholder="Your name"></div>
         <div class="field"><label for="f-business">Business and area</label><input id="f-business" name="business" type="text" required autocomplete="organization" placeholder="e.g. Rosen Remodeling, Hartford CT"></div>
@@ -550,7 +406,7 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
         <p class="fnote">No spam. By sending, you agree we may contact you by email, phone, text or WhatsApp about your request (msg &amp; data rates may apply; reply STOP to opt out). See our <a href="privacy.html">Privacy Policy</a>.</p>
       </form>
       <div class="fok" id="formOk">
-        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"></path></svg></div>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
         <h3 id="okTitle">Thanks!</h3>
         <p>I'll reach out within one business day to set up a quick <span class="nb">15-minute</span> call. Prefer to talk now? <a href="tel:+12674123407" data-contact="call_click">Call</a>, <a href="sms:+12674123407" data-contact="sms_click">text</a> or <a href="#" data-wa data-contact="whatsapp_click">WhatsApp</a> +1 (267) 412-3407.</p>
       </div>
@@ -561,29 +417,13 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
 <!-- FAQ -->
 <section class="sec white">
   <div class="wrap">
-    <div class="shead reveal"><div class="kicker">Questions</div><h2>Good to know</h2></div>
-    <div class="faq reveal">
+    <h2>Good to know</h2>
+    <div class="faq">
       <div class="qa"><button type="button">How much does it cost?<span class="pm">+</span></button><div class="ans"><p>It depends on what you need, so there isn't one price on this page. After the first call you get a clear price, before anything starts.</p></div></div>
       <div class="qa"><button type="button">Do you sell leads?<span class="pm">+</span></button><div class="ans"><p>No. I run ads for your business only. Every lead they bring goes straight to you and is never sold or shared.</p></div></div>
-      <div class="qa"><button type="button">What counts as a quality lead?<span class="pm">+</span></button><div class="ans"><p>Someone in your service area who is looking for what you do. We define it together on the first call, and the campaigns and tracking are built around that definition.</p></div></div>
       <div class="qa"><button type="button">Do I need a website?<span class="pm">+</span></button><div class="ans"><p>Not necessarily. I can build a landing page for the campaign. If you already have a site, I check whether it's ready for ads first.</p></div></div>
       <div class="qa"><button type="button">I already run ads. Is this still for me?<span class="pm">+</span></button><div class="ans"><p>Yes. A good place to start is the <a href="ads">ad account check</a>: I go through your Google or Meta account and send you the three changes I'd make first.</p></div></div>
       <div class="qa"><button type="button">Can we talk in Hebrew?<span class="pm">+</span></button><div class="ans"><p>Yes. Hebrew or English, whichever is easier for you.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CLOSING BAND — same lock-up as the ads -->
-<section class="band on-dark">
-  <div class="wrap">
-    <div class="logo lg">
-      <span class="disc"><img src="assets/logo-mark.png" alt="Marketing Scale" width="120" height="80"></span>
-      <span><span class="wm" style="font-size:25px">Marketing Scale</span><span class="tl" style="display:block;font-size:11px">One partner. All your marketing.</span></span>
-    </div>
-    <div class="div"></div>
-    <div class="cta">
-      <div class="k">Leads &amp; calls · 15-minute call to start</div>
-      <a href="#start" class="btn btn-primary">See if it's a fit</a>
     </div>
   </div>
 </section>
@@ -595,14 +435,14 @@ h1,h2,h3{font-family:var(--disp);letter-spacing:-1px;line-height:1.08}
   </div>
 </footer>
 
-<div class="mcta on-dark">
+<div class="mcta">
   <a href="#start" class="btn btn-primary">See if it's a fit</a>
-  <a href="tel:+12674123407" class="btn btn-line" data-contact="call_click">Call</a>
+  <a href="tel:+12674123407" class="btn btn-line" data-contact="call_click"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>Call</a>
 </div>
 
 <div class="ckb" id="cookieBanner" role="region" aria-label="Cookie notice">
   <!-- closes the plain notice (same as "Got it"); not shown where a real choice is required -->
-  <button type="button" class="ckb-x" data-consent="ack" aria-label="Close cookie notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button type="button" class="ckb-x" data-consent="ack" aria-label="Close cookie notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <div class="ckb-optin">
     <p>We use cookies and similar tools (Google, Meta, Microsoft Clarity) to measure site traffic and improve our ads. You can accept or decline. See our <a href="privacy.html">Privacy Policy</a>.</p>
     <div class="ckb-row">
