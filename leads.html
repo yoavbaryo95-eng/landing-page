@@ -77,7 +77,7 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
 .logo{display:inline-flex;align-items:center;gap:12px}
 .logo .disc{width:42px;height:42px;border-radius:50%;background:#fff;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 1px var(--line),0 0 0 4px rgba(63,224,196,.3)}
 .logo .disc img{width:62%;height:auto;display:block}
-.logo .wm{font-family:var(--disp);font-weight:700;letter-spacing:-.6px;line-height:1;font-size:18.5px}
+.logo .wm{font-family:var(--disp);font-weight:700;letter-spacing:-.6px;line-height:1;font-size:18.5px;white-space:nowrap}
 .logo .tl{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;margin-top:4px;color:var(--muted);display:block}
 
 /* buttons */
@@ -94,12 +94,13 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
 /* nav */
 .nav{position:sticky;top:0;z-index:50;background:rgba(245,248,252,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-.nav .btn{padding:9px 18px;min-height:42px;font-size:14.5px;border-radius:12px}
+.nav .btn{padding:9px 18px;min-height:42px;font-size:14.5px;border-radius:12px;white-space:nowrap}
 
 /* hero: type only, centered */
-.hero{padding:88px 0 0;text-align:center}
+.hero{padding:96px 0 var(--sec);text-align:center}
 .hero .wrap{max-width:900px}
-.hero h1{font-size:clamp(42px,8.2vw,88px);font-weight:700;letter-spacing:-.04em;line-height:.98}
+/* 8.8em is the width of "More quality leads.": the size keeps it on one line at any phone width */
+.hero h1{font-size:min(88px,max(30px,calc((100vw - 48px) / 8.8)));font-weight:700;letter-spacing:-.04em;line-height:1}
 .hero h1 em{font-style:normal;color:var(--signal);display:block}
 /* mint highlighter under the two words the page is about */
 .hero h1 .mark{background:linear-gradient(var(--pulse),var(--pulse)) no-repeat 0 88%/100% .2em}
@@ -108,19 +109,17 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
 .alt-contact{margin-top:16px;font-size:14px;color:var(--muted)}
 .alt-contact a,.talk a{color:var(--text);font-weight:600;text-decoration:underline;text-decoration-color:var(--pulse);text-decoration-thickness:2px;text-underline-offset:4px}
 .alt-contact a:hover,.talk a:hover{color:var(--action)}
-/* the line that leads from the hero into the path below */
-.hero .lead-in{display:block;width:2px;height:72px;margin:44px auto 0;background:linear-gradient(to bottom,transparent,var(--pulse))}
 
 /* the path: search, page, call */
-.path{background:var(--white);padding:0 0 var(--sec)}
-.path h2{text-align:center;padding-top:26px;max-width:15em;margin:0 auto}
+.path{background:var(--white);padding:var(--sec) 0}
+.path h2{max-width:15em}
 .stops{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px;position:relative}
-.stop{position:relative}
+.stop{position:relative;text-align:center}
 .stop h3{font-size:25px;font-weight:700;margin:24px 0 6px}
-.stop p{color:var(--muted);font-size:16px;max-width:19em}
+.stop p{color:var(--muted);font-size:16px;max-width:19em;margin:0 auto}
 /* connector between one picture and the next */
 .stop+.stop::before{content:"";position:absolute;left:-28px;top:103px;width:28px;height:2px;background:var(--pulse)}
-.ill{height:208px;border-radius:24px;background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:12px;padding:22px;overflow:hidden;pointer-events:none;user-select:none}
+.ill{text-align:left;height:208px;border-radius:24px;background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:12px;padding:22px;overflow:hidden;pointer-events:none;user-select:none}
 /* 1: the search */
 .sbar{display:flex;align-items:center;gap:10px;height:44px;border-radius:22px;background:#fff;border:1px solid var(--line);padding:0 16px;font-size:14.5px;font-weight:600;box-shadow:0 6px 14px -10px rgba(9,21,41,.35)}
 .sbar svg{width:17px;height:17px;color:var(--muted);flex:none}
@@ -154,8 +153,9 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
 .ring small{display:block;font-size:13px;color:var(--muted-d);margin-top:1px;white-space:nowrap}
 
 /* three promises, set as lines of type rather than cards */
+.sec h2,.path h2{text-align:center;margin-left:auto;margin-right:auto}
 .promise h2{max-width:13em}
-.promise .by{color:var(--muted);font-size:17px;max-width:34em;margin-top:18px}
+.promise .by{color:var(--muted);font-size:17px;max-width:34em;margin:18px auto 0;text-align:center}
 .rows{margin-top:44px;border-top:1px solid var(--line)}
 .rowp{display:grid;grid-template-columns:52px 1fr 1fr;gap:24px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line)}
 .rowp .ic{width:52px;height:52px;border-radius:16px;background:var(--tint-b);color:var(--action);display:flex;align-items:center;justify-content:center}
@@ -176,6 +176,7 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
 /* form */
 .book{background:var(--tint-b)}
 .book .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.book h2{text-align:left;margin-left:0}
 .book .sub{font-size:18px;color:var(--muted);margin-top:18px;max-width:24em}
 .book .talk{margin-top:26px;font-size:15.5px;color:var(--muted)}
 .formcard{background:#fff;border-radius:26px;padding:34px;box-shadow:0 34px 60px -40px rgba(9,21,41,.5),0 2px 6px -2px rgba(9,21,41,.08)}
@@ -200,7 +201,7 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
 .fok p a{color:var(--action);font-weight:600;text-decoration:underline;text-underline-offset:2px}
 
 /* faq */
-.faq{max-width:780px;margin-top:28px;border-top:1px solid var(--line)}
+.faq{max-width:780px;margin:36px auto 0;border-top:1px solid var(--line)}
 .qa{border-bottom:1px solid var(--line)}
 .qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;background:none;border:0;cursor:pointer;
   font-family:var(--disp);font-weight:600;font-size:18px;color:var(--text);text-align:left;padding:22px 0}
@@ -256,13 +257,16 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
 
 @media (max-width:860px){
   :root{--sec:72px}
-  .hero{padding-top:52px}
-  .hero h1{line-height:1}
+  .hero{padding-top:56px}
   .hero .cta{flex-direction:column;margin-top:28px}
   .hero .cta .btn{width:100%}
-  .hero .lead-in{height:52px;margin-top:32px}
-  .nav .wrap{height:62px}
+  /* the nav carries the logo only: the hero buttons sit right below it, and the sticky bar takes over once they scroll away */
+  .nav .wrap{height:62px;justify-content:center}
+  .nav .btn{display:none}
   .logo .disc{width:38px;height:38px}
+  .book .intro{text-align:center}
+  .book h2{text-align:center;margin-left:auto}
+  .book .sub{margin-left:auto;margin-right:auto}
   .stops{grid-template-columns:1fr;gap:0;margin-top:36px}
   .stop{padding-bottom:44px}
   .stop:last-child{padding-bottom:0}
@@ -270,7 +274,6 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
   .stop+.stop::before{left:50%;top:-34px;width:2px;height:24px}
   .ill{height:196px}
   .stop h3{margin-top:18px}
-  .stop p{max-width:none}
   .rowp{grid-template-columns:44px 1fr;gap:4px 16px;padding:24px 0;align-items:start}
   .rowp .ic{width:44px;height:44px;border-radius:14px;grid-row:span 2}
   .rowp p{grid-column:2;font-size:16px}
@@ -283,7 +286,7 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
   .ckb{left:10px;right:10px;bottom:10px;padding:10px 12px;font-size:12px;line-height:1.4}
   .ckb p{margin-bottom:8px}
   .ckb .btn{min-height:36px;padding:6px 14px;font-size:13px}
-  .foot .wrap{flex-direction:column;align-items:flex-start}
+  .foot .wrap{flex-direction:column;align-items:center;text-align:center}
 }
 </style>
 </head>
@@ -311,7 +314,6 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
       <a href="tel:+12674123407" class="btn btn-line" data-contact="call_click"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg>Call (267) 412-3407</a>
     </div>
     <p class="alt-contact">Or <a href="sms:+12674123407" data-contact="sms_click">text</a> / <a href="#" data-wa data-contact="whatsapp_click">WhatsApp</a>. Hebrew or English.</p>
-    <span class="lead-in" aria-hidden="true"></span>
   </div>
 </header>
 
