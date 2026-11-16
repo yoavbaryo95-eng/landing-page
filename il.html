@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl"><head>
+<!-- Consent — runs BEFORE GTM and decides whether GTM loads at all.
+     Europe (EEA/UK/CH, recognised by browser timezone): nothing loads until the visitor clicks Accept.
+     Everywhere else: GTM loads on arrival and the banner is a notice only.
+     A saved "denied" (localStorage "ms_consent") keeps GTM off anywhere. -->
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+(function(){
+  var OPT_IN=['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'];
+  var D={ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'};
+  var G={ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'};
+  gtag('consent','default',Object.assign({region:OPT_IN,wait_for_update:500},D));
+  gtag('consent','default',G);
+  var c=null;try{c=localStorage.getItem('ms_consent');}catch(e){}
+  var tz='';try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
+  var eu=/^Europe\/|^Atlantic\/(Reykjavik|Canary|Madeira|Azores|Faroe)/.test(tz);
+  /* optin: this visitor gets Accept/Decline (and the "Cookie settings" link) instead of the plain notice */
+  window.msConsent={choice:c,optin:eu||c==='denied',track:c==='denied'?false:(eu?c==='granted':true),granted:G};
+  if(msConsent.optin)document.documentElement.classList.add('ms-optin');
+  if(c==='granted')gtag('consent','update',G);
+})();
+</script>
+<!-- Google Tag Manager — wrapped in msLoadGTM() so it can be held back until consent -->
+<script>function msLoadGTM(){if(window.msGTM)return;window.msGTM=true;
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-547ZFG6D');}
+if(msConsent.track)msLoadGTM();</script>
+<!-- End Google Tag Manager -->
+
+<meta charset="utf-8">
+<script>try{if(matchMedia('(prefers-reduced-motion: no-preference)').matches)document.documentElement.classList.add('anim');}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מי שמריץ את הקמפיינים בונה גם את העמוד | Marketing Scale</title>
+<meta name="description" content="קמפיינים בגוגל ובמטא, עמוד נחיתה שבנוי להביא פניות ומדידה של כל שיחה וטופס, אצל אדם אחד. לעסקים בישראל ולעסקים שמוכרים לארה&quot;ב.">
+<link rel="canonical" href="https://marketing-scale.com/il">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:url" content="https://marketing-scale.com/il">
+<meta property="og:title" content="מי שמריץ את הקמפיינים בונה גם את העמוד">
+<meta property="og:description" content="קמפיינים בגוגל ובמטא, עמוד נחיתה שבנוי להביא פניות ומדידה של כל פנייה. אצל אדם אחד.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/png" href="assets/logo-badge.png">
+<link rel="apple-touch-icon" href="assets/logo-badge.png">
+<style>
+/* fonts: the brand's Latin fonts, plus Hebrew faces that only cover Hebrew characters,
+   so "Marketing Scale", "Google" etc. still render in the brand fonts (same setup as /websites-il) */
+@font-face{font-family:'Rubik';font-style:normal;font-weight:500 700;font-display:swap;src:url("assets/fonts/rubik-hebrew.woff2") format('woff2');
+  unicode-range:U+0307-0308,U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:400 700;font-display:swap;src:url("assets/fonts/heebo-hebrew.woff2") format('woff2');
+  unicode-range:U+0307-0308,U+0590-05FF,U+200C-2010,U+20AA,U+25CC,U+FB1D-FB4F}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400 800;font-display:swap;src:url("assets/fonts/plus-jakarta-sans-latin.woff2") format('woff2')}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url("assets/fonts/space-grotesk-latin.woff2") format('woff2')}
+@font-face{font-family:'Space Mono';font-style:normal;font-weight:400;font-display:swap;src:url("assets/fonts/space-mono-latin.woff2") format('woff2')}
+
+/* /il: the Hebrew twin of /leads (RTL). /leads is the light page of the site: paper and white surfaces, ink text, blue for action,
+   mint as a highlighter. Ink as a surface is kept for the footer and the incoming-call card only. */
+:root{
+  --ink:#091529;--signal:#2f6dff;--action:#2358e6;--action-d:#1b47c2;--pulse:#3fe0c4;
+  --paper:#f5f8fc;--white:#fff;--tint-b:#e9f0ff;--tint-m:#e4f9f4;--line:#d9e3f1;
+  --text:#0c1a35;--muted:#4f617d;--muted-d:#9db2d4;
+  --disp:'Rubik','Space Grotesk',sans-serif;--body:'Heebo','Plus Jakarta Sans',system-ui,sans-serif;--mono:'Heebo','Plus Jakarta Sans',system-ui,sans-serif;
+  --sec:104px;--ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scrollbar-color:#b9c8de var(--paper)}
+#start{scroll-margin-top:68px}
+body{font-family:var(--body);color:var(--text);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;caret-color:var(--action)}
+::selection{background:var(--pulse);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2.5px solid var(--action);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--disp);letter-spacing:-.3px;line-height:1.15;text-wrap:balance}
+.ltr{direction:ltr;unicode-bidi:isolate}
+h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
+.nb{white-space:nowrap}
+.sec{padding:var(--sec) 0}
+.sec.white{background:var(--white)}
+
+/* logo lock-up */
+.logo{display:inline-flex;align-items:center;gap:12px}
+.logo .disc{width:42px;height:42px;border-radius:50%;background:#fff;flex:none;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 1px var(--line),0 0 0 4px rgba(63,224,196,.3)}
+.logo .disc img{width:62%;height:auto;display:block}
+.logo .wm{font-family:var(--disp);font-weight:700;letter-spacing:-.6px;line-height:1;font-size:18.5px;white-space:nowrap}
+.logo .tl{font-family:var(--mono);font-size:11px;letter-spacing:0;margin-top:4px;color:var(--muted);display:block}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--disp);font-weight:600;font-size:16px;
+  padding:14px 26px;border-radius:14px;border:1.5px solid transparent;cursor:pointer;min-height:52px;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),background-color .2s,border-color .2s,color .2s}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-primary{background:var(--action);color:#fff;box-shadow:0 10px 22px -12px rgba(35,88,230,.8)}
+.btn-primary:hover{background:var(--action-d);transform:translateY(-2px);box-shadow:0 16px 28px -12px rgba(35,88,230,.75)}
+.btn-line{background:#fff;color:var(--text);border-color:var(--line)}
+.btn-line:hover{border-color:var(--action);color:var(--action);transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(245,248,252,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav .btn{padding:9px 18px;min-height:42px;font-size:14.5px;border-radius:12px;white-space:nowrap}
+
+/* hero: type only, centered */
+.hero{padding:96px 0 var(--sec);text-align:center}
+.hero .wrap{max-width:900px}
+.hero h1{font-size:clamp(36px,7.4vw,74px);font-weight:700;letter-spacing:-.5px;line-height:1.08}
+.hero h1 em{font-style:normal;color:var(--signal);display:block}
+/* mint highlighter under the two words the page is about */
+.hero h1 .mark{background:linear-gradient(var(--pulse),var(--pulse)) no-repeat 0 88%/100% .2em}
+.hero p.lead{font-size:clamp(17px,2.1vw,20.5px);color:var(--muted);max-width:33em;margin:26px auto 0;text-wrap:pretty}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:34px}
+.alt-contact{margin-top:16px;font-size:14px;color:var(--muted)}
+.alt-contact a,.talk a{color:var(--text);font-weight:600;text-decoration:underline;text-decoration-color:var(--pulse);text-decoration-thickness:2px;text-underline-offset:4px}
+.alt-contact a:hover,.talk a:hover{color:var(--action)}
+
+/* who it's for: two doors into the same service */
+.fit{padding:0 0 var(--sec)}
+.fit h2{text-align:center;margin:0 auto}
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px}
+.door{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:32px 30px;display:flex;flex-direction:column;gap:12px}
+.door .ic{width:52px;height:52px;border-radius:16px;background:var(--tint-b);color:var(--action);display:flex;align-items:center;justify-content:center}
+.door.us .ic{background:var(--tint-m);color:#0b7f69}
+.door .ic svg{width:25px;height:25px}
+.door h3{font-size:clamp(23px,2.6vw,29px);font-weight:700;margin-top:6px}
+.door p{color:var(--muted);font-size:16.5px;flex:1}
+.door a{align-self:flex-start;font-family:var(--disp);font-weight:600;color:var(--action);display:inline-flex;align-items:center;gap:6px}
+.door a:hover{color:var(--action-d)}
+.door a svg{width:17px;height:17px}
+
+/* the path: search, page, call */
+.path{background:var(--white);padding:var(--sec) 0}
+.path h2{max-width:15em}
+.stops{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px;position:relative}
+.stop{position:relative;text-align:center}
+.stop h3{font-size:25px;font-weight:700;margin:24px 0 6px}
+.stop p{color:var(--muted);font-size:16px;max-width:19em;margin:0 auto}
+/* connector between one picture and the next */
+.stop+.stop::before{content:"";position:absolute;right:-28px;top:103px;width:28px;height:2px;background:var(--pulse)}
+.ill{text-align:start;height:208px;border-radius:24px;background:var(--paper);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:12px;padding:22px;overflow:hidden;pointer-events:none;user-select:none}
+/* 1: the search */
+.sbar{display:flex;align-items:center;gap:10px;height:44px;border-radius:22px;background:#fff;border:1px solid var(--line);padding:0 16px;font-size:14.5px;font-weight:600;box-shadow:0 6px 14px -10px rgba(9,21,41,.35)}
+.sbar svg{width:17px;height:17px;color:var(--muted);flex:none}
+.sbar span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.res{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.res small{display:block;font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--muted)}
+.res b{display:block;font-family:var(--disp);font-size:16px;color:var(--action);margin:3px 0 9px;letter-spacing:-.01em}
+.res i{display:block;height:7px;border-radius:4px;background:#e3eaf4}
+.res i+i{width:62%;margin-top:6px}
+/* 2: the landing page */
+.pg{align-self:center;width:min(100%,232px);background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px 16px;box-shadow:0 14px 26px -18px rgba(9,21,41,.45)}
+.pg .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.pg .top u{width:44px;height:8px;border-radius:4px;background:var(--ink);text-decoration:none}
+.pg .top s{width:16px;height:8px;border-radius:4px;background:#d5deeb;text-decoration:none}
+.pg b{display:block;font-family:var(--disp);font-size:17px;line-height:1.12;letter-spacing:-.02em}
+.pg i{display:block;height:7px;width:78%;border-radius:4px;background:#e3eaf4;margin:9px 0 14px}
+.pg .row{display:flex;gap:8px}
+.pg .row span{flex:1;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:12.5px;font-weight:600}
+.pg .row .a{background:var(--action);color:#fff}
+.pg .row .b{border:1.5px solid var(--line);color:var(--text)}
+/* 3: the call. The one dark object on the page, and the one thing that moves. */
+.ill.call{background:var(--tint-m);border-color:#c5efe5;align-items:center}
+.ring{display:flex;align-items:center;gap:14px;width:min(100%,262px);background:var(--ink);color:#fff;border-radius:20px;padding:15px 18px;box-shadow:0 20px 34px -18px rgba(9,21,41,.7)}
+.ring .ph{position:relative;width:44px;height:44px;border-radius:50%;background:var(--pulse);color:var(--ink);display:flex;align-items:center;justify-content:center;flex:none}
+.ring .ph svg{width:20px;height:20px;position:relative}
+.ring .ph::before,.ring .ph::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--pulse);opacity:0}
+.anim .ring .ph::before,.anim .ring .ph::after{animation:ring 2.4s var(--ease) infinite}
+.anim .ring .ph::after{animation-delay:.8s}
+@keyframes ring{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(2.1);opacity:0}}
+.ring b{display:block;font-family:var(--disp);font-size:16px;letter-spacing:-.01em}
+.ring small{display:block;font-size:13px;color:var(--muted-d);margin-top:1px;white-space:nowrap}
+
+/* three promises, set as lines of type rather than cards */
+.sec h2,.path h2{text-align:center;margin-left:auto;margin-right:auto}
+.promise h2{max-width:13em}
+.promise .by{color:var(--muted);font-size:17px;max-width:34em;margin:18px auto 0;text-align:center}
+.rows{margin-top:44px;border-top:1px solid var(--line)}
+.rowp{display:grid;grid-template-columns:52px 1fr 1fr;gap:24px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line)}
+.rowp .ic{width:52px;height:52px;border-radius:16px;background:var(--tint-b);color:var(--action);display:flex;align-items:center;justify-content:center}
+.rowp .ic svg{width:24px;height:24px}
+.rowp h3{font-size:clamp(23px,2.9vw,33px);font-weight:700}
+.rowp p{color:var(--muted);font-size:17px}
+
+/* clients */
+.proof{background:var(--tint-m)}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:44px}
+.q blockquote{font-family:var(--disp);font-size:clamp(20px,2.2vw,25px);line-height:1.34;letter-spacing:-.015em;font-weight:500}
+.q blockquote b{font-weight:700;background:linear-gradient(var(--pulse),var(--pulse)) no-repeat 0 90%/100% .3em}
+.q .who{display:flex;align-items:center;gap:12px;margin-top:22px}
+.q .av{width:42px;height:42px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:var(--ink);color:#fff;font-family:var(--disp);font-weight:700}
+.q .who strong{display:block;font-family:var(--disp);font-size:15.5px}
+.q .who small{display:block;font-size:13.5px;color:#3d5570}
+
+/* form */
+.book{background:var(--tint-b)}
+.book .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.book h2{text-align:start;margin-right:0}
+.book .sub{font-size:18px;color:var(--muted);margin-top:18px;max-width:24em}
+.book .talk{margin-top:26px;font-size:15.5px;color:var(--muted)}
+.formcard{background:#fff;border-radius:26px;padding:34px;box-shadow:0 34px 60px -40px rgba(9,21,41,.5),0 2px 6px -2px rgba(9,21,41,.08)}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:14px;font-weight:600;margin-bottom:7px}
+.field input,.field select{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;font-family:var(--body);font-size:16px;color:var(--text);background-color:var(--paper);transition:border-color .2s,background-color .2s}
+.field input::placeholder{color:#6a7c97}
+.field select{padding-left:40px;-webkit-appearance:none;appearance:none;
+  background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234f617d' stroke-width='2.4'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat left 14px center/16px}
+.field input:focus,.field select:focus{outline:none;border-color:var(--action);background-color:#fff}
+.field.bad input,.field.bad select{border-color:#d1373d;background-color:#fff}
+.ferr{display:block;margin-top:6px;font-size:13px;font-weight:600;color:#c22f35}
+.formcard .btn{width:100%;margin-top:4px}
+.formcard .btn[disabled]{opacity:.75;cursor:progress;transform:none;box-shadow:none}
+.fnote{font-size:12px;color:var(--muted);text-align:center;margin-top:14px}
+.fnote a{text-decoration:underline;text-underline-offset:2px}
+.fok{display:none;text-align:center;padding:30px 6px}
+.fok .ic{width:56px;height:56px;border-radius:50%;background:var(--tint-m);color:#0b7f69;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.fok .ic svg{width:27px;height:27px}
+.fok h3{font-size:24px;margin-bottom:8px}
+.fok p{color:var(--muted);font-size:15.5px}
+.fok p a{color:var(--action);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+
+/* faq */
+.faq{max-width:780px;margin:36px auto 0;border-top:1px solid var(--line)}
+.qa{border-bottom:1px solid var(--line)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;background:none;border:0;cursor:pointer;
+  font-family:var(--disp);font-weight:600;font-size:18px;color:var(--text);text-align:start;padding:22px 0}
+.qa button:hover{color:var(--action)}
+.qa .pm{color:var(--action);font-size:24px;line-height:1;flex:none;transition:transform .3s var(--ease)}
+.qa.open .pm{transform:rotate(45deg)}
+.qa .ans{max-height:0;overflow:hidden;transition:max-height .32s var(--ease)}
+.qa .ans p{color:var(--muted);font-size:16px;padding-bottom:22px;max-width:40em}
+.qa .ans a{color:var(--action);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+
+/* footer */
+.foot{background:var(--ink);color:var(--muted-d);padding:28px 0 36px}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;font-size:14px}
+.foot a:hover{color:#fff}
+.foot .legal{display:flex;gap:16px;font-size:13px;color:#8298ba}
+.foot .legal button{background:none;border:0;font:inherit;color:inherit;cursor:pointer;padding:0}
+/* "Cookie settings" is only for visitors who get a real choice (see the consent block in <head>) */
+.foot .legal [data-cookie-settings]{display:none}
+.ms-optin .foot .legal [data-cookie-settings]{display:inline}
+
+/* sticky mobile CTA */
+.mcta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.mcta .btn{flex:1;font-size:15px;min-height:48px;padding:10px 12px;white-space:nowrap}
+.mcta .btn-line{flex:.55}
+
+/* cookie banner */
+.ckb{position:fixed;left:16px;right:16px;bottom:16px;z-index:70;display:none;max-width:420px;margin-right:auto;
+  background:var(--ink);color:var(--muted-d);border:1px solid rgba(140,170,220,.2);border-radius:16px;padding:16px 18px;
+  box-shadow:0 18px 40px -16px rgba(9,21,41,.55);font-size:13.5px;line-height:1.5}
+.ckb.show{display:block}
+.ckb p{margin-bottom:12px}
+.ckb a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+.ckb .ckb-row{display:flex;gap:10px;justify-content:flex-end}
+.ckb .btn{font-size:14px;min-height:40px;padding:8px 18px;border-radius:11px;box-shadow:none}
+.ckb .btn-line{background:transparent;color:#fff;border-color:rgba(140,170,220,.3)}
+.ckb .ckb-x{position:absolute;top:-11px;left:-7px;width:28px;height:28px;border-radius:50%;padding:0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;background:var(--ink);border:1px solid rgba(140,170,220,.3);color:var(--muted-d)}
+.ckb .ckb-x::after{content:"";position:absolute;inset:-8px} /* finger-sized tap area */
+.ckb .ckb-x:hover{color:#fff}
+.ckb .ckb-x svg{width:12px;height:12px}
+.ckb.optin .ckb-x{display:none}
+.ckb .ckb-optin{display:none}
+.ckb.optin .ckb-optin{display:block}
+.ckb .ckb-notice{display:flex;align-items:center;gap:14px}
+.ckb.optin .ckb-notice{display:none}
+.ckb .ckb-notice p{margin:0}
+.ckb .ckb-notice .ckb-row{flex:none}
+
+/* motion: only once the head script confirms no reduced-motion preference */
+.anim .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.anim .reveal.in{opacity:1;transform:none}
+
+@media (max-width:860px){
+  :root{--sec:72px}
+  .hero{padding-top:56px}
+  .hero .cta{flex-direction:column;margin-top:28px}
+  .hero .cta .btn{width:100%}
+  /* the nav carries the logo only: the hero buttons sit right below it, and the sticky bar takes over once they scroll away */
+  .nav .wrap{height:62px;justify-content:center}
+  .nav .btn{display:none}
+  .logo{gap:10px}
+  .logo .disc{width:36px;height:36px}
+  .logo .tl{display:none}
+  .logo .wm{font-size:19px}
+  .book .intro{text-align:center}
+  .book h2{text-align:center;margin-right:auto}
+  .book .sub{margin-left:auto;margin-right:auto}
+  .stops{grid-template-columns:1fr;gap:0;margin-top:36px}
+  .stop{padding-bottom:44px}
+  .stop:last-child{padding-bottom:0}
+  /* the connector turns and runs down between the pictures */
+  .stop+.stop::before{left:50%;top:-34px;width:2px;height:24px}
+  .ill{height:196px}
+  .stop h3{margin-top:18px}
+  .rowp{grid-template-columns:44px 1fr;gap:4px 16px;padding:24px 0;align-items:start}
+  .rowp .ic{width:44px;height:44px;border-radius:14px;grid-row:span 2}
+  .rowp p{grid-column:2;font-size:16px}
+  .quotes{grid-template-columns:1fr;gap:40px;margin-top:32px}
+  .doors{grid-template-columns:1fr;gap:16px;margin-top:32px}
+  .door{padding:26px 22px}
+  .book .wrap{grid-template-columns:1fr;gap:32px}
+  .formcard{padding:24px 20px;border-radius:22px}
+  body.show-mcta .mcta{display:flex}
+  body.show-mcta{padding-bottom:72px}
+  body.show-mcta .ckb{bottom:86px}
+  .ckb{left:10px;right:10px;bottom:10px;padding:10px 12px;font-size:12px;line-height:1.4}
+  .ckb p{margin-bottom:8px}
+  .ckb .btn{min-height:36px;padding:6px 14px;font-size:13px}
+  .foot .wrap{flex-direction:column;align-items:center;text-align:center}
+}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-547ZFG6D" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="logo">
+      <span class="disc"><img src="assets/logo-mark.png" alt="" width="120" height="80"></span>
+      <span><span class="wm ltr">Marketing Scale</span><span class="tl">קמפיינים ועמודי נחיתה</span></span>
+    </div>
+    <a href="#start" class="btn btn-primary">בואו נבדוק התאמה</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>מי שמריץ את הקמפיינים, <em>בונה גם את <span class="mark">העמוד.</span></em></h1>
+    <p class="lead">חמש שנים של ניהול תקציבי פרסום לעסקים בישראל ובארה&quot;ב. היום אני בונה גם את עמודי הנחיתה שהמודעות שולחות אליהם, ומודד כל פנייה עד למודעה שהביאה אותה.</p>
+    <div class="cta">
+      <a href="#start" class="btn btn-primary">בואו נבדוק התאמה</a>
+      <a href="#" class="btn btn-line" data-wa data-contact="whatsapp_click"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.3A8.5 8.5 0 1112 20.5a8.4 8.4 0 01-4.2-1.1z"/><path d="M9 9.3c.2 1.9 1.9 4.1 4.6 5.1l1.1-1.2 2 .9c-.3 1.2-1.3 1.8-2.4 1.6C11.5 15 9 12.6 8.4 9.8c-.2-1 .4-2 1.5-2.3l.9 2z"/></svg>דברו איתי בוואטסאפ</a>
+    </div>
+  </div>
+</header>
+
+<!-- WHO IT'S FOR: one page, two kinds of business (the ads point at #us or #local) -->
+<section class="fit">
+  <div class="wrap">
+    <h2>לשני סוגים של עסקים.</h2>
+    <div class="doors">
+      <div class="door us reveal" id="us">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg></div>
+        <h3>מוכרים לקהל בארה&quot;ב</h3>
+        <p>מודעות באנגלית, עמוד נחיתה שמדבר לקהל האמריקאי וקמפיינים שנבנים מניסיון בשוק הזה. אתם מנהלים את העסק מכאן, הפניות מגיעות משם.</p>
+        <a href="#start">בואו נדבר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+      </div>
+      <div class="door reveal" id="local">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/></svg></div>
+        <h3>עסק מקומי בישראל</h3>
+        <p>קמפיינים בגוגל ובמטא שמביאים פניות מהאזור שלכם, עמוד שבנוי להפוך קליק לשיחה, ומדידה שמראה מאיפה הגיעה כל פנייה.</p>
+        <a href="#start">בואו נדבר <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PATH: search, page, call -->
+<section class="path">
+  <div class="wrap">
+    <h2>מחיפוש ועד טלפון מצלצל.</h2>
+    <div class="stops">
+      <div class="stop reveal">
+        <div class="ill" aria-hidden="true">
+          <div class="sbar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg><span>שיפוץ מטבח באזור המרכז</span></div>
+          <div class="res"><small>ממומן</small><b>שיפוץ מטבחים בגוש דן</b><i></i><i></i></div>
+        </div>
+        <h3>מחפשים.</h3>
+        <p>מישהו מחפש בדיוק את מה שאתם עושים.</p>
+      </div>
+      <div class="stop reveal">
+        <div class="ill" aria-hidden="true">
+          <div class="pg">
+            <div class="top"><u></u><s></s></div>
+            <b>המטבח שלכם, כמו שצריך.</b><i></i>
+            <div class="row"><span class="a">התקשרו</span><span class="b">הצעת מחיר</span></div>
+          </div>
+        </div>
+        <h3>נוחתים.</h3>
+        <p>עמוד שבנוי להפוך את הקליק לשיחה.</p>
+      </div>
+      <div class="stop reveal">
+        <div class="ill call" aria-hidden="true">
+          <div class="ring"><span class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></svg></span><span><b>שיחה נכנסת</b><small>מהמודעה בגוגל</small></span></div>
+        </div>
+        <h3>הטלפון מצלצל.</h3>
+        <p>ואתם רואים איזו מודעה הביאה את הפנייה.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE PROMISES -->
+<section class="sec promise">
+  <div class="wrap">
+    <h2>לקנות קליקים זה קל. פניות טובות זה סיפור אחר.</h2>
+    <p class="by">חמש שנים של ניהול תקציבים לימדו אותי שאיכות הפנייה נקבעת גם במודעה וגם בעמוד שהיא שולחת אליו.</p>
+    <div class="rows">
+      <div class="rowp reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5M4 19h16M8 15l3.5-4 3 2.5L20 7"/></svg></div><h3>בנוי בידי מי שמריץ קמפיינים.</h3><p>העמוד נבנה מראש סביב מה שהמודעה צריכה כדי להשתלם.</p></div>
+      <div class="rowp reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 006.4 0l3-3A4.5 4.5 0 0013 4.6l-1.2 1.2"/><path d="M14 10a4.5 4.5 0 00-6.4 0l-3 3A4.5 4.5 0 0011 19.4l1.2-1.2"/></svg></div><h3>כל פנייה מקושרת למודעה.</h3><p>שיחות וטפסים נמדדים, כך שרואים מה עובד ומה לא.</p></div>
+      <div class="rowp reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0115 0"/></svg></div><h3>אדם אחד, לא סוכנות.</h3><p>מדברים ישירות עם מי שמנהל את הקמפיינים שלכם.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS (same Hebrew wording as /websites-il) -->
+<section class="sec proof" id="clients">
+  <div class="wrap">
+    <h2>מלקוחות</h2>
+    <div class="quotes">
+      <figure class="q reveal">
+        <blockquote>&ldquo;פעם שילמתי על קליקים וקיוויתי לטוב. היום כל קמפיין בנוי סביב <b>לגרום לטלפון לצלצל</b>, ואני מקבל דוח ברור על מה עובד ומה לא.&rdquo;</blockquote>
+        <figcaption class="who"><div class="av">J</div><div><strong>ג'רי</strong><small>בעלים, סוכנות טיולים בהתאמה אישית</small></div></figcaption>
+      </figure>
+      <figure class="q reveal">
+        <blockquote>&ldquo;הם לקחו את הקמפיינים שלנו בגוגל ובמטא <b>והבינו את המותג כבר מהשבוע הראשון</b>. תשובות מהירות, בלי חפירות, והמספרים תמיד היו מול העיניים.&rdquo;</blockquote>
+        <figcaption class="who"><div class="av">S</div><div><strong>שירה</strong><small>מנהלת מדיה, מותג מוצרי תינוקות</small></div></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="sec book" id="start">
+  <div class="wrap">
+    <div class="intro">
+      <h2>ספרו לי על העסק.</h2>
+      <p class="sub">אחזור אליכם תוך יום עסקים כדי לקבוע שיחה קצרה של 15 דקות.</p>
+      <p class="talk" data-wa-wrap>מעדיפים לדבר עכשיו? <a href="#" data-wa data-contact="whatsapp_click">שלחו הודעה בוואטסאפ</a></p>
+    </div>
+    <div class="formcard">
+      <form id="leadForm" novalidate>
+        <div class="field"><label for="f-name">שם</label><input id="f-name" name="name" type="text" required autocomplete="name" placeholder="השם שלכם"></div>
+        <div class="field"><label for="f-business">העסק ומה הוא עושה</label><input id="f-business" name="business" type="text" required autocomplete="organization" placeholder="למשל: שיפוצים, רמת גן"></div>
+        <div class="field"><label for="f-market">למי אתם מוכרים?</label>
+          <select id="f-market" name="market" required>
+            <option value="">בחרו</option><option>לקוחות בישראל</option><option>לקוחות בארה&quot;ב</option><option>גם וגם</option>
+          </select></div>
+        <div class="field"><label for="f-platform">איפה אתם מפרסמים היום?</label>
+          <select id="f-platform" name="ad_platform" required>
+            <option value="">בחרו</option><option>גוגל</option><option>מטא (פייסבוק / אינסטגרם)</option><option>גם וגם</option><option>עוד לא מפרסמים</option>
+          </select></div>
+        <div class="field"><label for="f-contact">טלפון / וואטסאפ או מייל</label><input id="f-contact" name="contact" type="text" required placeholder="מספר טלפון או כתובת מייל"></div>
+        <input type="hidden" name="source" value="il">
+        <button type="submit" class="btn btn-primary">שליחת הפרטים</button>
+        <p class="fnote">בלי ספאם. בשליחה אתם מאשרים שניצור איתכם קשר בטלפון, בוואטסאפ או במייל בנוגע לפנייה שלכם. ראו <a href="privacy.html">מדיניות פרטיות</a> (באנגלית).</p>
+      </form>
+      <div class="fok" id="formOk">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h3 id="okTitle">תודה!</h3>
+        <p>אחזור אליכם תוך יום עסקים כדי לקבוע שיחה קצרה של 15 דקות.<span data-wa-wrap> רוצים לדבר כבר עכשיו? <a href="#" data-wa data-contact="whatsapp_click">שלחו הודעה בוואטסאפ</a>.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec white">
+  <div class="wrap">
+    <h2>טוב לדעת</h2>
+    <div class="faq">
+      <div class="qa"><button type="button">כמה זה עולה?<span class="pm">+</span></button><div class="ans"><p>זה תלוי במה שהעסק צריך, ולכן אין מחיר אחד בעמוד. אחרי שיחת ההיכרות מקבלים הצעת מחיר ברורה, לפני שמשהו מתחיל.</p></div></div>
+      <div class="qa"><button type="button">אני מוכר לארה&quot;ב. זה מתאים לי?<span class="pm">+</span></button><div class="ans"><p>כן. המודעות, העמוד והמדידה נבנים לקהל האמריקאי ובאנגלית, ואתם עובדים מול מישהו שמדבר איתכם בעברית.</p></div></div>
+      <div class="qa"><button type="button">צריך אתר?<span class="pm">+</span></button><div class="ans"><p>לא בהכרח. אפשר לבנות עמוד נחיתה ייעודי לקמפיין. אם כבר יש לכם אתר, קודם בודקים אם הוא מוכן לפרסום.</p></div></div>
+      <div class="qa"><button type="button">אני כבר מפרסם. זה עדיין רלוונטי?<span class="pm">+</span></button><div class="ans"><p>כן. מתחילים בבדיקה של חשבון המודעות ושל העמוד שהוא שולח אליו, ואני אומר לכם מה הייתי משנה קודם.</p></div></div>
+      <div class="qa"><button type="button">הפניות שייכות רק לי?<span class="pm">+</span></button><div class="ans"><p>כן. אני מריץ מודעות רק לעסק שלכם, וכל פנייה מגיעה ישר אליכם. היא לא נמכרת ולא מועברת לאף אחד אחר.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div><a href="mailto:info@marketing-scale.com" class="ltr">info@marketing-scale.com</a><span data-wa-wrap> · <a href="#" data-wa data-contact="whatsapp_click">וואטסאפ</a></span></div>
+    <div class="legal"><a href="./">לאתר <span class="ltr">Marketing Scale</span></a><a href="privacy.html">מדיניות פרטיות</a><button type="button" data-cookie-settings>הגדרות עוגיות</button></div>
+  </div>
+</footer>
+
+<div class="mcta">
+  <a href="#start" class="btn btn-primary">בואו נבדוק התאמה</a>
+  <a href="#" class="btn btn-line" data-wa data-contact="whatsapp_click"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.3A8.5 8.5 0 1112 20.5a8.4 8.4 0 01-4.2-1.1z"/><path d="M9 9.3c.2 1.9 1.9 4.1 4.6 5.1l1.1-1.2 2 .9c-.3 1.2-1.3 1.8-2.4 1.6C11.5 15 9 12.6 8.4 9.8c-.2-1 .4-2 1.5-2.3l.9 2z"/></svg>וואטסאפ</a>
+</div>
+
+<div class="ckb" id="cookieBanner" role="region" aria-label="הודעה על עוגיות">
+  <button type="button" class="ckb-x" data-consent="ack" aria-label="סגירת ההודעה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <div class="ckb-optin">
+    <p>אנחנו משתמשים בעוגיות ובכלים דומים של Google,&nbsp;Meta ו-Microsoft&nbsp;Clarity כדי למדוד תנועה באתר ולשפר את המודעות שלנו. אפשר לאשר או לסרב. ראו <a href="privacy.html">מדיניות פרטיות</a>.</p>
+    <div class="ckb-row">
+      <button type="button" class="btn btn-line" data-consent="denied">לסרב</button>
+      <button type="button" class="btn btn-primary" data-consent="granted">לאשר</button>
+    </div>
+  </div>
+  <div class="ckb-notice">
+    <p>אנחנו משתמשים בעוגיות של Google,&nbsp;Meta ו-Microsoft&nbsp;Clarity כדי למדוד תנועה ולשפר את המודעות שלנו. ראו <a href="privacy.html">מדיניות פרטיות</a>.</p>
+    <div class="ckb-row">
+      <button type="button" class="btn btn-primary" data-consent="ack">הבנתי</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== CONFIG - /il (Hebrew). WHATSAPP is the one place the Israeli number lives: change it here, or set
+   it to "" and every WhatsApp button and link on the page disappears. FORM_ENDPOINT is the homepage's
+   Apps Script ("Marketing Scale - Leads" sheet), same as /leads; the dropdowns go into message ===== */
+var CONFIG = {
+  WHATSAPP: "972545706208",
+  WHATSAPP_MSG: "היי, הגעתי מהאתר של Marketing Scale ואשמח לדבר על קמפיינים לעסק שלי.",
+  FORM_ENDPOINT: "https://script.google.com/macros/s/AKfycbzHKAtcB7_EwUXuSUyxvaySb2NmvsLCv6EV_bjpIpTsQb0FdoO7sTk3JOQ7_JwKnrWy/exec"
+};
+/* ===== land at the top. Instagram/Facebook in-app browsers were moving visitors straight down to the
+   form (Clarity: ~80% scroll depth with 0 clicks in 2-6s, vs ~5% in Safari/Chrome). For the first
+   2.5s, any scroll the visitor didn't make is undone. A real #start link in the URL still jumps.
+   The visitor's first touch of any kind switches this off for good. The listeners sit on window in the
+   capture phase, so another script calling stopPropagation can't hide that touch: when it did, the
+   guard undid the visitor's own swipes and taps and the page looked frozen. ===== */
+(function(){
+  try{if('scrollRestoration' in history)history.scrollRestoration='manual';}catch(e){}
+  if(location.hash)return;
+  var EV=['touchstart','touchmove','pointerdown','mousedown','wheel','keydown'],on=true,logged=false;
+  function stop(){
+    if(!on)return;on=false;
+    removeEventListener('scroll',guard,true);
+    EV.forEach(function(ev){removeEventListener(ev,stop,true);});
+  }
+  function guard(){
+    if(!on||window.scrollY<=0)return;
+    try{window.scrollTo({top:0,behavior:'instant'});}catch(e){window.scrollTo(0,0);}
+    if(!logged&&window.clarity){logged=true;clarity('event','auto_scroll_blocked');}
+  }
+  EV.forEach(function(ev){addEventListener(ev,stop,{capture:true,passive:true});});
+  addEventListener('scroll',guard,{capture:true,passive:true});
+  setTimeout(stop,2500);
+})();
+/* ===== UTMs from the ad's landing URL, kept for the visit in case the page reloads without them ===== */
+var UTM=(function(){
+  var u={},q=location.search,saved=null;
+  ['utm_content','utm_term'].forEach(function(k){
+    var m=q.match(new RegExp('[?&]'+k+'=([^&#]*)'));
+    if(m)try{u[k]=decodeURIComponent(m[1].replace(/\+/g,' '));}catch(e){u[k]=m[1];}
+  });
+  try{
+    if(u.utm_content||u.utm_term)sessionStorage.setItem('ms_utm',JSON.stringify(u));
+    else saved=JSON.parse(sessionStorage.getItem('ms_utm')||'null');
+  }catch(e){}
+  return saved||u;
+})();
+if(!CONFIG.WHATSAPP){
+  document.querySelectorAll('[data-wa-wrap]').forEach(function(el){el.remove();});
+  document.querySelectorAll('[data-wa]').forEach(function(el){el.remove();});
+}
+document.querySelectorAll('[data-wa]').forEach(function(a){
+  a.href="https://wa.me/"+CONFIG.WHATSAPP+"?text="+encodeURIComponent(CONFIG.WHATSAPP_MSG);
+  a.target="_blank";a.rel="noopener";
+});
+/* call / text / WhatsApp taps: one dataLayer event (contact_click) with content_name telling them apart,
+   plus a Clarity event of the same name. GTM needs a Custom Event trigger on contact_click to use it. */
+document.querySelectorAll('[data-contact]').forEach(function(a){
+  a.addEventListener('click',function(){
+    var k=a.getAttribute('data-contact');
+    dataLayer.push({event:'contact_click',content_name:k,lead_source:'il'});
+    if(window.clarity)clarity('event',k);
+  });
+});
+document.querySelectorAll('.qa button').forEach(function(b){
+  b.addEventListener('click',function(){
+    var qa=b.parentElement,ans=qa.querySelector('.ans');
+    var open=qa.classList.toggle('open');
+    ans.style.maxHeight=open?ans.scrollHeight+'px':0;
+  });
+});
+/* our own required-field check (the form is novalidate): in-app browsers like Facebook's
+   often don't show the browser's "Please fill out this field" bubble, so a tap just did nothing */
+function fieldErr(el,msg){
+  var f=el.closest('.field'),s=f.querySelector('.ferr');
+  if(!s){s=document.createElement('small');s.className='ferr';f.appendChild(s);}
+  f.classList.add('bad');s.textContent=msg;el.setAttribute('aria-invalid','true');
+}
+function fieldOk(el){
+  var f=el.closest('.field'),s=f.querySelector('.ferr');
+  f.classList.remove('bad');if(s)s.remove();el.removeAttribute('aria-invalid');
+}
+document.querySelectorAll('#leadForm [required]').forEach(function(el){
+  el.addEventListener('input',function(){fieldOk(el);});
+  el.addEventListener('change',function(){fieldOk(el);}); /* dropdowns */
+});
+document.getElementById('leadForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  /* keep the raw submit away from GTM: its "submit lead" trigger (gtm.formSubmit) only excludes
+     /websites, so here it fired Meta Lead on every Send, even empty ones. lead_submit below is the
+     only Lead signal on this page. */
+  e.stopPropagation();
+  var form=e.target;
+  if(form.dataset.sending)return;
+  var first=null;
+  form.querySelectorAll('[required]').forEach(function(el){
+    var v=el.value.trim(),msg='';
+    if(!v)msg=el.tagName==='SELECT'?'צריך לבחור אחת מהאפשרויות':'צריך למלא את השדה הזה';
+    else if(el.name==='contact'&&v.indexOf('@')<0&&v.replace(/\D/g,'').length<7)msg='כתבו מספר טלפון או כתובת מייל';
+    if(msg){fieldErr(el,msg);if(!first)first=el;}else fieldOk(el);
+  });
+  if(first){
+    if(window.clarity)clarity('event','form_invalid');
+    first.scrollIntoView({block:'center'});first.focus();
+    return;
+  }
+  /* the Sheet script takes ~3s to answer — block a second tap and show that it's working */
+  form.dataset.sending='1';
+  var btn=form.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='שולח…';
+  /* plain loop rather than Object.fromEntries, which older in-app browsers don't have */
+  var data={};new FormData(form).forEach(function(v,k){data[k]=v;});
+  /* one contact field on the page, but the Sheet still gets separate email / phone columns */
+  var ct=(data.contact||'').trim();delete data.contact;
+  if(ct.indexOf('@')>-1){data.email=ct;data.phone='';}else{data.email='';data.phone=ct;}
+  /* the homepage Sheet has a message column but none for the dropdowns: put them there so they aren't lost */
+  data.message='Hebrew page (/il). Sells to: '+(data.market||'-')+'. Advertises on: '+(data.ad_platform||'-')+'.';
+  /* which ad and keyword brought the lead (Sheet columns utm_content / utm_term) */
+  data.utm_content=UTM.utm_content||'';data.utm_term=UTM.utm_term||'';
+  /* lets GTM/Meta tell these leads apart from /leads, /websites, /ads and the main site */
+  dataLayer.push({event:'lead_submit',lead_source:'il',content_name:'il_lp'});
+  /* Clarity custom events: compare lead_submit with form_invalid to see how many get stuck */
+  if(window.clarity)clarity('event','lead_submit');
+  var shown=false;
+  function done(){if(shown)return;shown=true;
+    /* greet by first name when there is one; the heading falls back to "תודה!" */
+    var fn=(data.name||'').trim().split(/\s+/)[0];
+    if(fn)document.getElementById('okTitle').textContent='תודה, '+fn.charAt(0).toUpperCase()+fn.slice(1)+'.';
+    form.style.display='none';var ok=document.getElementById('formOk');ok.style.display='block';
+    var m=document.querySelector('.mcta');if(m)m.remove();ok.scrollIntoView({block:'center'});}
+  if(CONFIG.FORM_ENDPOINT){
+    /* keepalive lets the request finish even if the visitor leaves right after the confirmation */
+    fetch(CONFIG.FORM_ENDPOINT,{method:'POST',keepalive:true,body:JSON.stringify(data),headers:{'Content-Type':'text/plain;charset=utf-8'}}).then(done,done);
+    setTimeout(done,1200);
+  }else{done();}
+});
+
+/* ===== scroll reveal (skipped when motion is reduced) ===== */
+(function(){
+  var animate=document.documentElement.classList.contains('anim')&&'IntersectionObserver' in window;
+  var els=document.querySelectorAll('.reveal');
+  if(!animate){els.forEach(function(el){el.classList.add('in');});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var el=e.target,sibs=el.parentElement?el.parentElement.querySelectorAll(':scope > .reveal'):[el];
+      var idx=Array.prototype.indexOf.call(sibs,el);
+      el.style.transitionDelay=(idx>0?Math.min(idx,4)*0.07:0)+'s';
+      el.classList.add('in');io.unobserve(el);
+    });
+  },{threshold:.16,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(el){io.observe(el);});
+})();
+
+/* ===== sticky mobile CTA once the hero is scrolled past, hidden again while the form section is on screen ===== */
+(function(){
+  var hero=document.querySelector('.hero'),start=document.getElementById('start');
+  if(!hero||!('IntersectionObserver' in window))return;
+  var inHero=true,inStart=false;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.target===hero)inHero=e.isIntersecting;else inStart=e.isIntersecting;});
+    document.body.classList.toggle('show-mcta',!inHero&&!inStart);
+  },{rootMargin:'-40px 0px 0px 0px',threshold:0});
+  io.observe(hero);if(start)io.observe(start);
+})();
+
+/* ===== cookie banner — pairs with the consent block at the top of <head> ===== */
+(function(){
+  var bn=document.getElementById('cookieBanner'),mc=window.msConsent;
+  if(mc.optin)bn.classList.add('optin');
+  /* show until a real answer exists; a dismissed notice doesn't count where a choice is required */
+  if(!mc.choice||(mc.optin&&mc.choice==='ack'))bn.classList.add('show');
+  /* first-party cookies the tools leave behind — removed when someone declines */
+  function clearCookies(){
+    var h=location.hostname.replace(/^www\./,'');
+    document.cookie.split(';').forEach(function(p){
+      var n=p.split('=')[0].trim();
+      if(!/^(_ga|_gid|_gcl|_fbp|_fbc|_clck|_clsk)/.test(n))return;
+      ['','; domain='+h,'; domain=.'+h].forEach(function(d){document.cookie=n+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'+d;});
+    });
+  }
+  /* analytics rewrites a cookie as the page unloads after a decline — sweep again on the next load */
+  if(mc.choice==='denied')clearCookies();
+  function set(v){
+    try{localStorage.setItem('ms_consent',v);}catch(e){}
+    bn.classList.remove('show');
+    if(v==='ack')return; /* notice dismissed */
+    if(v==='granted'){gtag('consent','update',mc.granted);msLoadGTM();return;}
+    /* declined: GTM stays off from here on. If it is already running, reload so it stops now. */
+    clearCookies();
+    if(window.msGTM)location.reload();
+  }
+  bn.querySelectorAll('[data-consent]').forEach(function(b){
+    b.addEventListener('click',function(){set(b.getAttribute('data-consent'));});
+  });
+  document.querySelectorAll('[data-cookie-settings]').forEach(function(b){
+    b.addEventListener('click',function(){bn.classList.add('show');});
+  });
+})();
+</script>
+</body></html>
