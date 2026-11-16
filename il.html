@@ -116,6 +116,16 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
 .alt-contact a,.talk a{color:var(--text);font-weight:600;text-decoration:underline;text-decoration-color:var(--pulse);text-decoration-thickness:2px;text-underline-offset:4px}
 .alt-contact a:hover,.talk a:hover{color:var(--action)}
 
+/* what I do: four plain cards */
+.svc{padding:0 0 var(--sec)}
+.svc h2{text-align:center;margin:0 auto}
+.items{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.item{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:24px 22px}
+.item .ic{width:46px;height:46px;border-radius:14px;background:var(--tint-b);color:var(--action);display:flex;align-items:center;justify-content:center}
+.item .ic svg{width:22px;height:22px}
+.item h3{font-size:20px;font-weight:700;margin:16px 0 6px}
+.item p{color:var(--muted);font-size:15.5px}
+
 /* who it's for: two doors into the same service */
 .fit{padding:0 0 var(--sec)}
 .fit h2{text-align:center;margin:0 auto}
@@ -302,6 +312,10 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
   .rowp p{grid-column:2;font-size:16px}
   .quotes{grid-template-columns:1fr;gap:40px;margin-top:32px}
   .doors{grid-template-columns:1fr;gap:16px;margin-top:32px}
+  .items{grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+  .item{padding:20px 16px}
+  .item h3{font-size:17.5px}
+  .item p{font-size:14.5px}
   .door{padding:26px 22px}
   .book .wrap{grid-template-columns:1fr;gap:32px}
   .formcard{padding:24px 20px;border-radius:22px}
@@ -333,13 +347,26 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
 <header class="hero">
   <div class="wrap">
     <h1>מי שמריץ את הקמפיינים, <em>בונה גם את <span class="mark">העמוד.</span></em></h1>
-    <p class="lead">חמש שנים של ניהול תקציבי פרסום לעסקים בישראל ובארה&quot;ב. היום אני בונה גם את עמודי הנחיתה שהמודעות שולחות אליהם, ומודד כל פנייה עד למודעה שהביאה אותה.</p>
+    <p class="lead">קמפיינים בגוגל ובמטא, עמוד נחיתה שבנוי להביא פניות, ומדידה של כל שיחה וטופס. הכל אצל אדם אחד.</p>
     <div class="cta">
       <a href="#start" class="btn btn-primary">בואו נבדוק התאמה</a>
       <a href="#" class="btn btn-line" data-wa data-contact="whatsapp_click"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.3A8.5 8.5 0 1112 20.5a8.4 8.4 0 01-4.2-1.1z"/><path d="M9 9.3c.2 1.9 1.9 4.1 4.6 5.1l1.1-1.2 2 .9c-.3 1.2-1.3 1.8-2.4 1.6C11.5 15 9 12.6 8.4 9.8c-.2-1 .4-2 1.5-2.3l.9 2z"/></svg>דברו איתי בוואטסאפ</a>
     </div>
   </div>
 </header>
+
+<!-- WHAT I DO: the service, spelled out -->
+<section class="svc">
+  <div class="wrap">
+    <h2>מה אני עושה בשבילכם.</h2>
+    <div class="items">
+      <div class="item reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z"/></svg></div><h3>הקמת קמפיינים בגוגל ובמטא</h3><p>מחקר מילות מפתח וקהלים, מבנה קמפיין וכתיבת מודעות.</p></div>
+      <div class="item reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4" width="17" height="16" rx="2.5"/><path d="M3.5 9h17M8 14h5"/></svg></div><h3>עמוד נחיתה</h3><p>עמוד ייעודי לקמפיין, או בדיקה ושיפור של האתר הקיים.</p></div>
+      <div class="item reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5M4 19h16M8 15l3.5-4 3 2.5L20 7"/></svg></div><h3>מדידה</h3><p>מעקב אחרי שיחות, טפסים ווואטסאפ, כדי לדעת איזו מודעה הביאה כל פנייה.</p></div>
+      <div class="item reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 11-2.3-5.7M20 4v4.5h-4.5"/></svg></div><h3>ניהול שוטף</h3><p>אופטימיזציה של תקציבים ומודעות, ודוחות בתדירות שמתאימה לכם.</p></div>
+    </div>
+  </div>
+</section>
 
 <!-- WHO IT'S FOR: one page, two kinds of business (the ads point at #us or #local) -->
 <section class="fit">
@@ -401,7 +428,7 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
 <section class="sec promise">
   <div class="wrap">
     <h2>לקנות קליקים זה קל. פניות טובות זה סיפור אחר.</h2>
-    <p class="by">חמש שנים של ניהול תקציבים לימדו אותי שאיכות הפנייה נקבעת גם במודעה וגם בעמוד שהיא שולחת אליו.</p>
+    <p class="by">חמש שנים של ניהול תקציבי פרסום לעסקים בישראל ובארה&quot;ב לימדו אותי שאיכות הפנייה נקבעת גם במודעה וגם בעמוד שהיא שולחת אליו.</p>
     <div class="rows">
       <div class="rowp reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5M4 19h16M8 15l3.5-4 3 2.5L20 7"/></svg></div><h3>בנוי בידי מי שמריץ קמפיינים.</h3><p>העמוד נבנה מראש סביב מה שהמודעה צריכה כדי להשתלם.</p></div>
       <div class="rowp reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4.5 4.5 0 006.4 0l3-3A4.5 4.5 0 0013 4.6l-1.2 1.2"/><path d="M14 10a4.5 4.5 0 00-6.4 0l-3 3A4.5 4.5 0 0011 19.4l1.2-1.2"/></svg></div><h3>כל פנייה מקושרת למודעה.</h3><p>שיחות וטפסים נמדדים, כך שרואים מה עובד ומה לא.</p></div>
@@ -466,7 +493,8 @@ h2{font-size:clamp(30px,4.4vw,48px);font-weight:700}
   <div class="wrap">
     <h2>טוב לדעת</h2>
     <div class="faq">
-      <div class="qa"><button type="button">כמה זה עולה?<span class="pm">+</span></button><div class="ans"><p>זה תלוי במה שהעסק צריך, ולכן אין מחיר אחד בעמוד. אחרי שיחת ההיכרות מקבלים הצעת מחיר ברורה, לפני שמשהו מתחיל.</p></div></div>
+      <div class="qa"><button type="button">איך זה עובד?<span class="pm">+</span></button><div class="ans"><p>מתחילים בהקמה: קמפיינים, עמוד נחיתה ומדידה. כשהכל באוויר עוברים לניהול חודשי שוטף, ואת תדירות הדוחות קובעים יחד, לפי מה שנוח לכם.</p></div></div>
+      <div class="qa"><button type="button">כמה זה עולה?<span class="pm">+</span></button><div class="ans"><p>זה תלוי במה שהעסק צריך, ולכן אין מחיר אחד בעמוד. אחרי שיחת ההיכרות מקבלים הצעת מחיר ברורה להקמה ולניהול החודשי, לפני שמשהו מתחיל.</p></div></div>
       <div class="qa"><button type="button">אני מוכר לארה&quot;ב. זה מתאים לי?<span class="pm">+</span></button><div class="ans"><p>כן. המודעות, העמוד והמדידה נבנים לקהל האמריקאי ובאנגלית, ואתם עובדים מול מישהו שמדבר איתכם בעברית.</p></div></div>
       <div class="qa"><button type="button">צריך אתר?<span class="pm">+</span></button><div class="ans"><p>לא בהכרח. אפשר לבנות עמוד נחיתה ייעודי לקמפיין. אם כבר יש לכם אתר, קודם בודקים אם הוא מוכן לפרסום.</p></div></div>
       <div class="qa"><button type="button">אני כבר מפרסם. זה עדיין רלוונטי?<span class="pm">+</span></button><div class="ans"><p>כן. מתחילים בבדיקה של חשבון המודעות ושל העמוד שהוא שולח אליו, ואני אומר לכם מה הייתי משנה קודם.</p></div></div>
